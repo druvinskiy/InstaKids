@@ -11,10 +11,9 @@ import PencilKit
 
 class DrawingViewController: UIViewController {
     
+    static let reuseID = "DrawingViewControllerID"
     var sketch: Sketch?
     var canvasView: PKCanvasView!
-    private var selectedPenIndex = 0
-    var sketchDataSource: SketchDataSource?
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
@@ -40,7 +39,6 @@ class DrawingViewController: UIViewController {
         
         canvasView.backgroundColor = UIColor.lightGray
         
-        //    setupSimpleTools()
         setupToolPicker()
     }
     
@@ -50,34 +48,14 @@ class DrawingViewController: UIViewController {
     }
     
     func updateSketch() {
-        guard let sketch = sketch else { return }
-        sketch.drawing = canvasView.drawing
-        sketchDataSource?.generateThumbnail(for: sketch)
+        let drawing = canvasView.drawing
+        let image = drawing.image(from: canvasView.frame, scale: 3.0)
+        
+        let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        let newStekch = Sketch(thumbnailImage: image.withBackground(color: offWhite), drawing: drawing)
+        PersistanceManager.save(sketch: newStekch)
     }
-    
-    func setupSimpleTools() {
-        let segmentedControl = UISegmentedControl(items: ["Black", "Red"])
-        segmentedControl.selectedSegmentIndex = 0
-        let barButtonItem = UIBarButtonItem(customView: segmentedControl)
-        segmentedControl.addTarget(self, action: #selector(penChanged(_:)), for: .valueChanged)
-        navigationItem.rightBarButtonItems?.append(barButtonItem)
-        updatePen()
-    }
-    
-    @objc
-    func penChanged(_ sender: UISegmentedControl) {
-        selectedPenIndex = sender.selectedSegmentIndex
-        updatePen()
-    }
-    
-    func updatePen() {
-        if selectedPenIndex == 0 {
-            canvasView.tool = PKInkingTool(.pen, color: .systemFill, width: 10)
-        } else {
-            canvasView.tool = PKInkingTool(.pen, color: .systemRed, width: 10)
-        }
-    }
-    
+
     func setupToolPicker() {
         if let window = self.parent?.view.window,
             let toolPicker = PKToolPicker.shared(for: window) {
@@ -130,3 +108,4 @@ extension DrawingViewController: PKToolPickerObserver {
         }
     }
 }
+
