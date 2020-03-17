@@ -44,16 +44,18 @@ class DrawingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        updateSketch()
+        saveSketch()
     }
     
-    func updateSketch() {
-        let drawing = canvasView.drawing
-        let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        
-        let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-        let newStekch = Sketch(thumbnailImage: image.withBackground(color: offWhite), drawing: drawing)
-        PersistanceManager.save(sketch: newStekch)
+    func saveSketch() {
+        if sketch == nil{
+            let drawing = canvasView.drawing
+            let image = drawing.image(from: canvasView.frame, scale: 3.0)
+            let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+            let newStekch = Sketch(thumbnailImage: image.withBackground(color: offWhite), drawing: drawing)
+            
+            PersistanceManager.save(sketch: newStekch)
+        }
     }
 
     func setupToolPicker() {
