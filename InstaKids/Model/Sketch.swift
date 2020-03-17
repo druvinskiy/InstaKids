@@ -12,14 +12,16 @@ import PencilKit
 class Sketch: Codable {
     var thumbnailImage: UIImage
     var drawing: PKDrawing
+    var dateCreated: Date
     
     enum CodingKeys: CodingKey {
-        case thumbnailImage, drawing
+        case thumbnailImage, drawing, dateCreated
     }
     
-    init(thumbnailImage: UIImage, drawing: PKDrawing) {
+    init(thumbnailImage: UIImage, drawing: PKDrawing, dateCreated: Date) {
         self.thumbnailImage = thumbnailImage
         self.drawing = drawing
+        self.dateCreated = dateCreated
     }
     
     required init(from decoder: Decoder) throws {
@@ -27,10 +29,11 @@ class Sketch: Codable {
         
         let thumnailData = try container.decode(Data.self, forKey: .thumbnailImage)
         thumbnailImage = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(thumnailData) as! UIImage
-      
         
         let drawingData = try container.decode(Data.self, forKey: .drawing)
         drawing = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(drawingData) as! PKDrawing
+        
+        dateCreated = try container.decode(Date.self, forKey: .dateCreated)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -41,6 +44,8 @@ class Sketch: Codable {
         
         let drawingData = try NSKeyedArchiver.archivedData(withRootObject: drawing, requiringSecureCoding: false)
         try container.encode(drawingData, forKey: .drawing)
+        
+        try container.encode(dateCreated, forKey: .dateCreated)
     }
     
 }
