@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LBTAViewController: UIViewController {
     
     let canvas = Canvas(frame: .zero)
     
