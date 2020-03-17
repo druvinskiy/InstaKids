@@ -19,7 +19,12 @@ enum PersistanceManager{
         retrieveSketches { (result) in
             switch result{
             case .success(var retrivedSketches):
-                retrivedSketches.append(sketch)
+                if let row = retrivedSketches.firstIndex(where: {$0 == sketch}) {
+                       retrivedSketches[row] = sketch
+                } else {
+                    retrivedSketches.append(sketch)
+                }
+                
                 do {
                     let encoder = JSONEncoder()
                     let encoded = try encoder.encode(retrivedSketches)

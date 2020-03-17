@@ -9,7 +9,7 @@
 import Foundation
 import PencilKit
 
-class Sketch: Codable {
+class Sketch: Codable, Equatable {
     var thumbnailImage: UIImage
     var drawing: PKDrawing
     var dateCreated: Date
@@ -48,4 +48,7 @@ class Sketch: Codable {
         try container.encode(dateCreated, forKey: .dateCreated)
     }
     
+    static func == (lhs: Sketch, rhs: Sketch) -> Bool {
+        lhs.dateCreated == rhs.dateCreated
+    }
 }

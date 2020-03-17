@@ -48,16 +48,14 @@ class DrawingViewController: UIViewController {
     }
     
     func saveSketch() {
-        if sketch == nil{
-            let drawing = canvasView.drawing
-            let image = drawing.image(from: canvasView.frame, scale: 3.0)
-            let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-            let imageWithBackgroundColor = image.withBackground(color: offWhite)
-            let now = Date()
-            let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
-            
-            PersistanceManager.save(sketch: newStekch)
-        }
+        let drawing = canvasView.drawing
+        let image = drawing.image(from: canvasView.frame, scale: 3.0)
+        let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        let imageWithBackgroundColor = image.withBackground(color: offWhite)
+        let now = Date()
+        let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
+        
+        PersistanceManager.save(sketch: sketch ?? newStekch)
     }
 
     func setupToolPicker() {
