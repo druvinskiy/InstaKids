@@ -10,16 +10,10 @@ import UIKit
 
 class SketchCell: UITableViewCell {
     static let reuseID = "SketchCellID"
-    let thumbnailImageView = UIImageView()
+    //let thumbnailImageView = UIImageView()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
-    }
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func set(with thumbnail: UIImage?){
         thumbnailImageView.image = thumbnail
@@ -27,15 +21,26 @@ class SketchCell: UITableViewCell {
     
     private func configure(){
         let padding : CGFloat = 10
-        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImageView.contentMode = .scaleAspectFit
-        addSubview(thumbnailImageView)
+        //thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        //thumbnailImageView.contentMode = .scaleAspectFit
+        //addSubview(thumbnailImageView)
                 
-        NSLayoutConstraint.activate([
-            thumbnailImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)
-        ])
+//        NSLayoutConstraint.activate([
+//            thumbnailImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+//            thumbnailImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
+//            thumbnailImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+//            thumbnailImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)
+//        ])
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
 }
