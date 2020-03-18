@@ -105,7 +105,7 @@
                         <viewLayoutGuide key="safeArea" id="P2x-Al-ekl"/>
                     </view>
                     <navigationItem key="navigationItem" title="InstaKids" id="ag9-bD-5uR">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="h2w-sq-bPx">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="h2w-sq-bPx">
                             <connections>
                                 <action selector="addDrawing:" destination="Bfc-gi-Yjf" id="BXF-O0-Qe3"/>
                             </connections>
@@ -141,5 +141,6 @@
     </scenes>
     <resources>
         <image name="FeedIcon" width="16" height="16"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>
