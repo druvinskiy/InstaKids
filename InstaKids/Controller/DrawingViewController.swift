@@ -37,7 +37,7 @@ class DrawingViewController: UIViewController {
         canvasView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         canvasView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         
-        canvasView.backgroundColor = UIColor.lightGray
+        canvasView.backgroundColor = .offWhite
         
         setupToolPicker()
     }
@@ -50,8 +50,7 @@ class DrawingViewController: UIViewController {
     func saveSketch() {
         let drawing = canvasView.drawing
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-        let imageWithBackgroundColor = image.withBackground(color: offWhite)
+        let imageWithBackgroundColor = image.withBackground(color: .offWhite)
         
         if sketch == nil {
             let now = Date()
