@@ -19,7 +19,7 @@ enum PersistanceManager{
         retrieveSketches { (result) in
             switch result{
             case .success(var retrivedSketches):
-                if let row = retrivedSketches.firstIndex(where: {$0.dateCreated == sketch.dateCreated}) {
+                if let row = retrivedSketches.firstIndex(where: {$0 == sketch}) {
                        retrivedSketches[row] = sketch
                 } else {
                     retrivedSketches.append(sketch)

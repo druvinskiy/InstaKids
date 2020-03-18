@@ -24,6 +24,8 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         DispatchQueue.global(qos: .userInteractive).async{
             PersistanceManager.retrieveSketches { (result) in
                 switch result{
