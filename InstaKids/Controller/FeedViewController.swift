@@ -23,14 +23,18 @@ class FeedViewController: UIViewController {
         configureTableView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        PersistanceManager.retrieveSketches { (result) in
-            switch result{
-            case .success(let sketches):
-                self.sketches = sketches
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.global(qos: .userInteractive).async{
+            PersistanceManager.retrieveSketches { (result) in
+                switch result{
+                case .success(let sketches):
+                    DispatchQueue.main.async {
+                        self.sketches = sketches
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
