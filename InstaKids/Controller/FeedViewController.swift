@@ -15,7 +15,6 @@ class FeedViewController: UIViewController {
     fileprivate func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(SketchCell.self, forCellReuseIdentifier: SketchCell.reuseID)
     }
     
     override func viewDidLoad() {

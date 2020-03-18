@@ -54,11 +54,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoCell" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SketchCellID" rowHeight="400" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rrw-HF-pr2" id="TZY-D4-kHc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6b-E8-rt0">
@@ -67,14 +67,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-CM-T4L">
-                                                    <rect key="frame" x="20" y="264" width="33" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-CM-T4L">
+                                                    <rect key="frame" x="20" y="364" width="33" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qPB-2k-zgV">
-                                                    <rect key="frame" x="10" y="48" width="394" height="206"/>
+                                                    <rect key="frame" x="10" y="48" width="394" height="306"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -89,7 +89,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="thumbnailImageView" destination="qPB-2k-zgV" id="zke-XJ-Bgy"/>
+                                            <outlet property="testImageView" destination="qPB-2k-zgV" id="4VD-Yg-thx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -107,7 +107,7 @@
                     <navigationItem key="navigationItem" title="InstaKids" id="ag9-bD-5uR">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="h2w-sq-bPx">
                             <connections>
-                                <action selector="addDrawing:" destination="Bfc-gi-Yjf" id="vss-By-bxo"/>
+                                <action selector="addDrawing:" destination="Bfc-gi-Yjf" id="BXF-O0-Qe3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -122,7 +122,6 @@
         <!--Feed-->
         <scene sceneID="Zgu-9f-OY7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lbj-V5-Sbn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aCQ-aF-Rmn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="FeedIcon" id="D1a-fY-zED"/>
                     <toolbarItems/>
@@ -135,6 +134,7 @@
                         <segue destination="Bfc-gi-Yjf" kind="relationship" relationship="rootViewController" id="MIV-Wl-Mn6"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lbj-V5-Sbn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1039" y="852"/>
         </scene>

@@ -10,10 +10,10 @@
 		A650B84A242134D800F55712 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A650B849242134D800F55712 /* PersistanceManager.swift */; };
 		A650B84C2421378F00F55712 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A650B84B2421378F00F55712 /* UIImageExtension.swift */; };
 		A68FD0E52421A6DB00C1DD35 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68FD0E42421A6DB00C1DD35 /* UIColorExtension.swift */; };
+		B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C65782421BCA500EACDD7 /* SketchCell.swift */; };
 		B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */; };
-		B8C86B1224200124002E3985 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C86B1124200124002E3985 /* SketchCell.swift */; };
 		B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AC241ED1B100C28356 /* AppDelegate.swift */; };
 		B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */; };
 		B8EC99B4241ED1B100C28356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B2241ED1B100C28356 /* Main.storyboard */; };
@@ -25,10 +25,10 @@
 		A650B849242134D800F55712 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		A650B84B2421378F00F55712 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		A68FD0E42421A6DB00C1DD35 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B85C65782421BCA500EACDD7 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
 		B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		B8C86B1124200124002E3985 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
 		B8EC99A9241ED1B100C28356 /* InstaKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EC99AC241ED1B100C28356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		B8EC99C2241EDABA00C28356 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8C86B1124200124002E3985 /* SketchCell.swift */,
+				B85C65782421BCA500EACDD7 /* SketchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,10 +191,10 @@
 				B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
 				B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */,
-				B8C86B1224200124002E3985 /* SketchCell.swift in Sources */,
 				B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */,
 				A68FD0E52421A6DB00C1DD35 /* UIColorExtension.swift in Sources */,
 				B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */,
+				B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */,
 				A650B84A242134D800F55712 /* PersistanceManager.swift in Sources */,
 				A650B84C2421378F00F55712 /* UIImageExtension.swift in Sources */,
 			);
