@@ -8,6 +8,7 @@
 
 import UIKit
 import PencilKit
+import FirebaseAuth
 
 class DrawingViewController: UIViewController {
     
@@ -27,9 +28,9 @@ class DrawingViewController: UIViewController {
         canvasView.allowsFingerDrawing = true
         view.addSubview(canvasView)
         
-        if let sketch = sketch {
-            canvasView.drawing = sketch.drawing
-        }
+//        if let sketch = sketch, let drawing = sketch.drawing {
+//            canvasView.drawing = drawing
+//        }
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         canvasView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -51,15 +52,20 @@ class DrawingViewController: UIViewController {
         let drawing = canvasView.drawing
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
         let imageWithBackgroundColor = image.withBackground(color: .offWhite)
-        
+                
         if sketch == nil {
-            let now = Date()
-            let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
-            PersistanceManager.save(sketch: newStekch)
+//            let now = Date()
+//            let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
+//            PersistanceManager.save(sketch: newStekch)
+            
+            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
+            
         } else {
-            sketch?.drawing = drawing
-            sketch?.thumbnailImage = imageWithBackgroundColor
-            PersistanceManager.save(sketch: sketch!)
+//            sketch?.drawing = drawing
+//            sketch?.thumbnailImage = imageWithBackgroundColor
+//            PersistanceManager.save(sketch: sketch!)
+            
+            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
         }
     }
 

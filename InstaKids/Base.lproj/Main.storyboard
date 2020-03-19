@@ -89,7 +89,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="testImageView" destination="qPB-2k-zgV" id="4VD-Yg-thx"/>
+                                            <outlet property="sketchImageView" destination="qPB-2k-zgV" id="4VD-Yg-thx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

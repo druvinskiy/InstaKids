@@ -25,18 +25,23 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        DispatchQueue.global(qos: .userInteractive).async{
-            PersistanceManager.retrieveSketches { (result) in
-                switch result{
-                case .success(let sketches):
-                    DispatchQueue.main.async {
-                        self.sketches = sketches
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+//        DispatchQueue.global(qos: .userInteractive).async{
+//            PersistanceManager.retrieveSketches { (result) in
+//                switch result{
+//                case .success(let sketches):
+//                    DispatchQueue.main.async {
+//                        self.sketches = sketches
+//                        self.tableView.reloadData()
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+        
+        SketchService.getSketches { (sketches) in
+            self.sketches = sketches
+            self.tableView.reloadData()
         }
     }
 
@@ -57,9 +62,8 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.feedSketchTableCellId, for: indexPath) as! SketchCell
         
-        let thumbnail = sketches[indexPath.row].thumbnailImage
-
-        cell.set(with: thumbnail)
+        let sketch = sketches[indexPath.row]
+        cell.set(with: sketch)
 
         return cell
     }

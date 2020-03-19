@@ -10,10 +10,15 @@ import UIKit
 
 class SketchCell: UITableViewCell {
     
-    @IBOutlet weak var testImageView: UIImageView!
+    @IBOutlet weak var sketchImageView: UIImageView!
     
-    func set(with thumbnail: UIImage?){
-        testImageView.image = thumbnail
+    func set(with sketch: Sketch){
+        guard let imageUrl = sketch.imageUrl else { return }
+        
+        SketchService.downloadImage(from: imageUrl) { (image) in
+            
+            self.sketchImageView.image = image
+        }
     }
 
     override func awakeFromNib() {

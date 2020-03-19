@@ -18,6 +18,7 @@
 		B8365FF12422A9C70017F5A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8365FF02422A9C70017F5A7 /* Constants.swift */; };
 		B8365FF32422ABDE0017F5A7 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8365FF22422ABDE0017F5A7 /* LocalStorageService.swift */; };
 		B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */; };
+		B850C3EA24230420002D87E0 /* SketchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E924230420002D87E0 /* SketchService.swift */; };
 		B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C65782421BCA500EACDD7 /* SketchCell.swift */; };
 		B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
@@ -42,6 +43,7 @@
 		B8365FF02422A9C70017F5A7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B8365FF22422ABDE0017F5A7 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		B850C3E924230420002D87E0 /* SketchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchService.swift; sourceTree = "<group>"; };
 		B85C65782421BCA500EACDD7 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
 		B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				B8365FEB2422A8F00017F5A7 /* UserService.swift */,
 				B8365FF22422ABDE0017F5A7 /* LocalStorageService.swift */,
+				B850C3E924230420002D87E0 /* SketchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
+				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
 				B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
 				B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */,

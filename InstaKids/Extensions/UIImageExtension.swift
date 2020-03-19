@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PencilKit
 
 extension UIImage {
     func withBackground(color: UIColor, opaque: Bool = true) -> UIImage {

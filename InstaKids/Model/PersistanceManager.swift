@@ -50,6 +50,7 @@ enum PersistanceManager{
             let sketches = try decode.decode([Sketch].self, from: sketchData)
             completed(.success(sketches))
         } catch{
+            print(error)
             completed(.failure(error))
         }        
     }
