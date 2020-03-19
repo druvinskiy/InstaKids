@@ -30,6 +30,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        //Check local storage to see if a user is saved
+        let user = LocalStorageService.loadCurrentUser()
+        
+        if user != nil {
+            
+            //Create a tab bar controller
+            let tabBarVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: Constants.Storyboard.feedController)
+            
+            //Show it
+            window?.rootViewController = tabBarVC
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

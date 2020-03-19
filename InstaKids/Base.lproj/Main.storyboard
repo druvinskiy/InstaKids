@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aCQ-aF-Rmn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BTv-m6-6sb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOJ-7Z-VRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773.91304347826087" y="851.78571428571422"/>
+            <point key="canvasLocation" x="526" y="852"/>
         </scene>
         <!--InstaKids-->
         <scene sceneID="fUk-iS-ywY">
@@ -54,7 +54,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SketchCellID" rowHeight="400" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SketchCell" rowHeight="400" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rrw-HF-pr2" id="TZY-D4-kHc">
@@ -122,7 +122,7 @@
         <!--Feed-->
         <scene sceneID="Zgu-9f-OY7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aCQ-aF-Rmn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedController" automaticallyAdjustsScrollViewInsets="NO" id="aCQ-aF-Rmn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="FeedIcon" id="D1a-fY-zED"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mPI-er-eFK">
@@ -138,9 +138,130 @@
             </objects>
             <point key="canvasLocation" x="-1039" y="852"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="NSa-Bm-ks4">
+            <objects>
+                <viewController id="BTv-m6-6sb" customClass="LoginViewController" customModule="InstaKids" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e0q-k2-0jc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="20Y-qt-KoE">
+                                <rect key="frame" x="107" y="249" width="200" height="398.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstaKids" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeg-RX-Y3v">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="56.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="47"/>
+                                        <color key="textColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crayon" translatesAutoresizingMaskIntoConstraints="NO" id="BYY-V1-rGa">
+                                        <rect key="frame" x="0.0" y="106.5" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="3hy-7F-QZT"/>
+                                            <constraint firstAttribute="width" constant="200" id="xgc-3g-9Il"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-ym-ynp">
+                                        <rect key="frame" x="0.0" y="356.5" width="200" height="42"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginTapped:" destination="BTv-m6-6sb" eventType="touchUpInside" id="XM8-qc-h4Z"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="20Y-qt-KoE" firstAttribute="centerY" secondItem="e0q-k2-0jc" secondAttribute="centerY" id="9pp-NJ-toA"/>
+                            <constraint firstItem="20Y-qt-KoE" firstAttribute="centerX" secondItem="e0q-k2-0jc" secondAttribute="centerX" id="Gsq-ji-vWc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qq1-PN-qlc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fLz-xX-Fgu"/>
+                    <connections>
+                        <segue destination="4MQ-3K-7d4" kind="show" identifier="goToCreateProfile" id="xme-Wt-hAJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFf-ma-Tub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1039" y="156"/>
+        </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="ISH-E2-5DJ">
+            <objects>
+                <viewController id="4MQ-3K-7d4" customClass="CreateProfileViewController" customModule="InstaKids" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AgO-gA-gPb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1PZ-qE-O8A">
+                                <rect key="frame" x="20" y="340.5" width="374" height="161"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqO-1N-OOM">
+                                        <rect key="frame" x="98.5" y="0.0" width="177" height="41"/>
+                                        <string key="text">Welcome!
+Please set a username:</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bBm-9v-jCb">
+                                        <rect key="frame" x="0.0" y="61" width="374" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="raV-ri-4Jc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Heh-Ok-yWK">
+                                        <rect key="frame" x="87" y="121" width="200" height="40"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="hxp-WB-a9Z"/>
+                                            <constraint firstAttribute="height" constant="40" id="ijM-d6-PS3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmTapped:" destination="4MQ-3K-7d4" eventType="touchUpInside" id="ige-GE-yxj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bBm-9v-jCb" firstAttribute="leading" secondItem="1PZ-qE-O8A" secondAttribute="leading" id="RYV-af-Y6A"/>
+                                    <constraint firstAttribute="trailing" secondItem="bBm-9v-jCb" secondAttribute="trailing" id="cmc-7I-gd7"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kpl-oN-HZ8" firstAttribute="trailing" secondItem="1PZ-qE-O8A" secondAttribute="trailing" constant="20" id="2Tb-wr-8Ks"/>
+                            <constraint firstItem="1PZ-qE-O8A" firstAttribute="leading" secondItem="kpl-oN-HZ8" secondAttribute="leading" constant="20" id="JjT-dc-Ixi"/>
+                            <constraint firstItem="1PZ-qE-O8A" firstAttribute="centerY" secondItem="AgO-gA-gPb" secondAttribute="centerY" id="Rdm-Nb-eG6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kpl-oN-HZ8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="etQ-Ao-qvI"/>
+                    <connections>
+                        <outlet property="usernameTextField" destination="bBm-9v-jCb" id="fNF-Uh-JLR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RlZ-VB-Sx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-294" y="155"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FeedIcon" width="16" height="16"/>
+        <image name="crayon" width="500" height="500"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>

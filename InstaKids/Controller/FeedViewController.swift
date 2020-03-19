@@ -55,7 +55,8 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SketchCell.reuseID, for: indexPath) as! SketchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.feedSketchTableCellId, for: indexPath) as! SketchCell
+        
         let thumbnail = sketches[indexPath.row].thumbnailImage
 
         cell.set(with: thumbnail)

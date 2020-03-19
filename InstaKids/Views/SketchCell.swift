@@ -10,9 +10,8 @@ import UIKit
 
 class SketchCell: UITableViewCell {
     
-    static let reuseID = "SketchCellID"
-    
     @IBOutlet weak var testImageView: UIImageView!
+    
     func set(with thumbnail: UIImage?){
         testImageView.image = thumbnail
     }
