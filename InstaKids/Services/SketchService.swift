@@ -79,17 +79,17 @@ class SketchService {
                 }
                 else {
                     //Upload was successfull, now create a database entry
-                    //self.createSketchDatabaseEntry(ref: drawingRef)
+                    self.createSketchDatabaseEntry(ref: drawingRef, to: "drawingUrl")
                 }
             }
             
-            imageRef.putData(encoded, metadata: nil) { (metdata, error) in
+            imageRef.putData(photoData!, metadata: nil) { (metdata, error) in
                 if error != nil {
                     //An error during upload occured
                 }
                 else {
                     //Upload was successfull, now create a database entry
-                    self.createSketchDatabaseEntry(ref: imageRef)
+                    self.createSketchDatabaseEntry(ref: imageRef, to: "imageUrl")
                 }
             }
         
@@ -98,7 +98,7 @@ class SketchService {
         }
     }
     
-    private static func createSketchDatabaseEntry(ref: StorageReference) {
+    private static func createSketchDatabaseEntry(ref: StorageReference, to: String) {
         
         //Get a download url for the photo
         ref.downloadURL { (url, error) in
@@ -124,7 +124,7 @@ class SketchService {
                 let dateString = dateFormatter.string(from: Date())
                 
                 //Create sketch data
-                let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, "imageUrl": url!.absoluteString]
+                let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, to: url!.absoluteString]
                 
                 //Write a database entry
                 let dbRef = Database.database().reference().child("sketches").childByAutoId()
@@ -142,7 +142,7 @@ class SketchService {
         }
     }
     
-    static func downloadImage(from urlString: String, completion: @escaping (UIImage) -> Void) {
+    static func downloadData(from urlString: String, completion: @escaping (Any) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in

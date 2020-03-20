@@ -91,7 +91,7 @@ class Sketch: Codable, Equatable {
             let byId = sketchData["byId"]
             let byUsername = sketchData["byUsername"]
             let date = sketchData["date"]
-            let sketchUrl = sketchData["sketchUrl"]
+            let drawingUrl = sketchData["drawingUrl"]
             let imageUrl = sketchData["imageUrl"]
             
             guard byId != nil && byUsername != nil && date != nil && imageUrl != nil else {
@@ -102,7 +102,7 @@ class Sketch: Codable, Equatable {
             self.byId = byId
             self.byUsername = byUsername
             self.dateCreated = date
-            self.drawingUrl = sketchUrl
+            self.drawingUrl = drawingUrl
             self.imageUrl = imageUrl
         }
     }

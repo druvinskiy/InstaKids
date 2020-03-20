@@ -28,9 +28,11 @@ class DrawingViewController: UIViewController {
         canvasView.allowsFingerDrawing = true
         view.addSubview(canvasView)
         
-//        if let sketch = sketch, let drawing = sketch.drawing {
-//            canvasView.drawing = drawing
-//        }
+        if let sketch = sketch {
+            SketchService.downloadData(from: sketch.drawingUrl!) { (data) in
+                canvasView.drawing = data as! PKDrawing
+            }
+        }
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         canvasView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
