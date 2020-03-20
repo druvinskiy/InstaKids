@@ -30,7 +30,7 @@ class DrawingViewController: UIViewController {
         
         if let sketch = sketch {
             SketchService.downloadData(from: sketch.drawingUrl!) { (data) in
-                canvasView.drawing = data as! PKDrawing
+                canvasView.drawing = try! PKDrawing(data: data)
             }
         }
         
@@ -47,28 +47,24 @@ class DrawingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        saveSketch()
+        //saveSketch()
     }
     
     func saveSketch() {
-        let drawing = canvasView.drawing
-        let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let imageWithBackgroundColor = image.withBackground(color: .offWhite)
-                
-        if sketch == nil {
+//        if sketch == nil {
 //            let now = Date()
 //            let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
 //            PersistanceManager.save(sketch: newStekch)
-            
-            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
-            
-        } else {
+//
+//            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
+//
+//        } else {
 //            sketch?.drawing = drawing
 //            sketch?.thumbnailImage = imageWithBackgroundColor
 //            PersistanceManager.save(sketch: sketch!)
-            
-            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
-        }
+//
+//            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
+//        }
     }
 
     func setupToolPicker() {
@@ -89,6 +85,15 @@ class DrawingViewController: UIViewController {
     @IBAction func redo(_ sender: UIBarButtonItem) {
         undoManager?.redo()
     }
+    
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        let drawing = canvasView.drawing
+        let image = drawing.image(from: canvasView.frame, scale: 3.0)
+        let imageWithBackgroundColor = image.withBackground(color: .offWhite)
+        
+        SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
+    }
+    
 }
 
 extension DrawingViewController: PKToolPickerObserver {

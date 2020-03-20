@@ -53,8 +53,8 @@ class SketchService {
     static func saveSketch(drawing: PKDrawing, thumbnailImage: UIImage) {
         
         do {
-            let encoder = JSONEncoder()
-            let encoded = try encoder.encode(drawing)
+            //let encoder = JSONEncoder()
+            let drawingData = drawing.dataRepresentation()
             
             let photoData = thumbnailImage.jpegData(compressionQuality: 0.1)
             
@@ -72,50 +72,39 @@ class SketchService {
             let imageRef = storage.reference().child("images/\(userid)/\(filename).jpg")
                         
             //Upload the sketch
-            drawingRef.putData(encoded, metadata: nil) { (metadata, error) in
+            drawingRef.putData(drawingData, metadata: nil) { (metadata, error) in
                 
-                if error != nil {
-                    //An error during upload occured
-                }
-                else {
-                    //Upload was successfull, now create a database entry
-                    self.createSketchDatabaseEntry(ref: drawingRef, to: "drawingUrl")
+                guard error == nil else { return }
+                
+                imageRef.putData(photoData!, metadata: nil) { (metdata, error) in
+                    
+                    guard error == nil else { return }
+                    
+                    createSketchDatabaseEntry(drawingRef: drawingRef, imageRef: imageRef)
                 }
             }
             
-            imageRef.putData(photoData!, metadata: nil) { (metdata, error) in
-                if error != nil {
-                    //An error during upload occured
-                }
-                else {
-                    //Upload was successfull, now create a database entry
-                    self.createSketchDatabaseEntry(ref: imageRef, to: "imageUrl")
-                }
-            }
-        
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    private static func createSketchDatabaseEntry(ref: StorageReference, to: String) {
+    private static func createSketchDatabaseEntry(drawingRef: StorageReference, imageRef: StorageReference) {
         
         //Get a download url for the photo
-        ref.downloadURL { (url, error) in
+        drawingRef.downloadURL { (drawingUrl, error) in
             
-            if error != nil {
-                //Couldn't retrieve the url
-                return
-            } else {
+            guard error == nil else { return }
+            
+            imageRef.downloadURL { (imageUrl, error) in
+                guard error == nil else { return }
                 
                 //Get the meta data for the db entry
                 
                 //User
                 let user = LocalStorageService.loadCurrentUser()
                 
-                guard user != nil else {
-                    return
-                }
+                guard user != nil else { return }
                 
                 //Date
                 let dateFormatter = DateFormatter()
@@ -124,7 +113,7 @@ class SketchService {
                 let dateString = dateFormatter.string(from: Date())
                 
                 //Create sketch data
-                let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, to: url!.absoluteString]
+                let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, "drawingUrl" : drawingUrl!.absoluteString, "imageUrl" : imageUrl!.absoluteString]
                 
                 //Write a database entry
                 let dbRef = Database.database().reference().child("sketches").childByAutoId()
@@ -142,7 +131,7 @@ class SketchService {
         }
     }
     
-    static func downloadData(from urlString: String, completion: @escaping (Any) -> Void) {
+    static func downloadData(from urlString: String, completion: @escaping (Data) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -152,10 +141,8 @@ class SketchService {
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
             guard let data = data else { return }
             
-            guard let image = UIImage(data: data) else { return }
-            
             DispatchQueue.main.async {
-                completion(image)
+                completion(data)
             }
         }
         

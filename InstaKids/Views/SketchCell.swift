@@ -15,8 +15,8 @@ class SketchCell: UITableViewCell {
     func set(with sketch: Sketch){
         guard let imageUrl = sketch.imageUrl else { return }
         
-        SketchService.downloadData(from: imageUrl) { (image) in
-            self.sketchImageView.image = image as? UIImage
+        SketchService.downloadData(from: imageUrl) { (data) in
+            self.sketchImageView.image = UIImage(data: data)
         }
     }
 
