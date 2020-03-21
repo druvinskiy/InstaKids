@@ -9,6 +9,7 @@
 import UIKit
 import PencilKit
 import FirebaseAuth
+import JGProgressHUD
 
 class DrawingViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class DrawingViewController: UIViewController {
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
+    
+    fileprivate let saveHUD = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,11 +94,30 @@ class DrawingViewController: UIViewController {
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
         let imageWithBackgroundColor = image.withBackground(color: .offWhite)
         
+        saveHUD.textLabel.text = "Loading"
+        saveHUD.show(in: self.view)
+        
+        view.isUserInteractionEnabled = false
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        navigationController?.navigationBar.tintColor = UIColor.lightGray
+        
+        navigationItem.rightBarButtonItems?.forEach({ (button) in
+            button.isEnabled = false
+        })
+
         SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor, sketchId: sketch?.sketchId) { (sketch) in
             self.sketch = sketch
+            self.saveHUD.dismiss(animated: true)
+            
+            self.view.isUserInteractionEnabled = true
+            self.navigationController?.navigationBar.isUserInteractionEnabled = true
+            self.navigationController?.navigationBar.tintColor = nil
+            
+            self.navigationItem.rightBarButtonItems?.forEach({ (button) in
+                button.isEnabled = true
+            })
         }
     }
-    
 }
 
 extension DrawingViewController: PKToolPickerObserver {
