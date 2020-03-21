@@ -19,6 +19,7 @@ class DrawingViewController: UIViewController {
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     fileprivate let saveHUD = JGProgressHUD(style: .dark)
     
@@ -33,9 +34,14 @@ class DrawingViewController: UIViewController {
         
         if let sketch = sketch {
             SketchService.downloadData(from: sketch.drawingUrl!) { (data) in
-                canvasView.drawing = try! PKDrawing(data: data)
+                self.canvasView.drawing = try! PKDrawing(data: data)
+                canvasView.delegate = self
+                self.saveButton.isEnabled = false
             }
         }
+        
+        canvasView.delegate = self
+        self.saveButton.isEnabled = false
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         canvasView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -46,28 +52,6 @@ class DrawingViewController: UIViewController {
         canvasView.backgroundColor = .offWhite
         
         setupToolPicker()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //saveSketch()
-    }
-    
-    func saveSketch() {
-//        if sketch == nil {
-//            let now = Date()
-//            let newStekch = Sketch(thumbnailImage: imageWithBackgroundColor, drawing: drawing, dateCreated: now)
-//            PersistanceManager.save(sketch: newStekch)
-//
-//            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
-//
-//        } else {
-//            sketch?.drawing = drawing
-//            sketch?.thumbnailImage = imageWithBackgroundColor
-//            PersistanceManager.save(sketch: sketch!)
-//
-//            SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
-//        }
     }
 
     func setupToolPicker() {
@@ -116,6 +100,8 @@ class DrawingViewController: UIViewController {
             self.navigationItem.rightBarButtonItems?.forEach({ (button) in
                 button.isEnabled = true
             })
+            
+            self.saveButton.isEnabled = false
         }
     }
 }
@@ -150,6 +136,12 @@ extension DrawingViewController: PKToolPickerObserver {
         } else {
             navigationItem.leftBarButtonItems = [undoButton, redoButton]
         }
+    }
+}
+
+extension DrawingViewController: PKCanvasViewDelegate {
+    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+        saveButton.isEnabled = true
     }
 }
 
