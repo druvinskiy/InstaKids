@@ -11,8 +11,11 @@ import UIKit
 class SketchCell: UITableViewCell {
     
     @IBOutlet weak var sketchImageView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     func set(with sketch: Sketch){
+        dateLabel.text = sketch.dateCreated
+        
         guard let imageUrl = sketch.imageUrl else { return }
         
         SketchService.downloadData(from: imageUrl) { (data) in

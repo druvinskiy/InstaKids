@@ -95,7 +95,7 @@ class DrawingViewController: UIViewController {
             
             self.view.isUserInteractionEnabled = true
             self.navigationController?.navigationBar.isUserInteractionEnabled = true
-            self.navigationController?.navigationBar.tintColor = nil
+            self.navigationController?.navigationBar.tintColor = .white
             
             self.navigationItem.rightBarButtonItems?.forEach({ (button) in
                 button.isEnabled = true
