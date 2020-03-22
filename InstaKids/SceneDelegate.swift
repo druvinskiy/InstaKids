@@ -17,7 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController
+        
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        
+        window?.rootViewController = loginVC
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -37,7 +48,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if user != nil {
             
             //Create a tab bar controller
-            let tabBarVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: Constants.Storyboard.feedController)
+            let tabBarVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+            
+            let userListVC = UsersListViewController()
+            tabBarVC.viewControllers?.append(userListVC)
+            
+            guard let item = userListVC.tabBarItem else { return }
+            item.title = "Users"
+            item.image = UIImage(named: "UserIcon")
             
             //Show it
             window?.rootViewController = tabBarVC

@@ -13,9 +13,11 @@ import JGProgressHUD
 
 class DrawingViewController: UIViewController {
     
-    static let reuseID = "DrawingViewControllerID"
+    static let reuseID = "DrawingNavigationControllerID"
     var sketch: Sketch?
     var canvasView: PKCanvasView!
+    var creatingProfileDrawing = false
+    var handleCreateProfileDrawing: ((UIImage) -> Void)?
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
@@ -76,9 +78,9 @@ class DrawingViewController: UIViewController {
     @IBAction func save(_ sender: UIBarButtonItem) {
         let drawing = canvasView.drawing
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let imageWithBackgroundColor = image.withBackground(color: .offWhite)
+        let imageWithBackgroundColor = image.withBackground(color: .white)
         
-        saveHUD.textLabel.text = "Loading"
+        saveHUD.textLabel.text = "Saving"
         saveHUD.show(in: self.view)
         
         view.isUserInteractionEnabled = false
@@ -88,6 +90,13 @@ class DrawingViewController: UIViewController {
         navigationItem.rightBarButtonItems?.forEach({ (button) in
             button.isEnabled = false
         })
+        
+        if creatingProfileDrawing {
+            if let handleProfileDrawing = handleCreateProfileDrawing {
+                handleProfileDrawing(imageWithBackgroundColor)
+                return
+            }
+        }
 
         SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor, sketchId: sketch?.sketchId) { (sketch) in
             self.sketch = sketch

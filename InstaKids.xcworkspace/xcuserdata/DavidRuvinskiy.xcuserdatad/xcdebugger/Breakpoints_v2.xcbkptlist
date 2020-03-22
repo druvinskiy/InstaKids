@@ -130,38 +130,70 @@
             endingLineNumber = "132"
             landmarkName = "createSketchDatabaseEntry(drawingRef:imageRef:sketchId:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "32B0E4F4-49BC-4462-B615-C31095210355 - a6af11a17f88d00d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;InstaKids.Sketch&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static InstaKids.SketchService.(createSketchDatabaseEntry in _00B352E11C5B6FD5BC9A5DE08C2D379F)(drawingRef: __C.FIRStorageReference, imageRef: __C.FIRStorageReference, sketchId: Swift.Optional&lt;Swift.String&gt;, completion: (InstaKids.Sketch) -&gt; ()) -&gt; ()"
-                  moduleName = "InstaKids"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DavidRuvinskiy/Desktop/InstaKids/InstaKids/Services/SketchService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "32B0E4F4-49BC-4462-B615-C31095210355 - 1b98337005cafbf7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (InstaKids.Sketch) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;InstaKids.Sketch&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.URL&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static InstaKids.SketchService.(createSketchDatabaseEntry in _00B352E11C5B6FD5BC9A5DE08C2D379F)(drawingRef: __C.FIRStorageReference, imageRef: __C.FIRStorageReference, sketchId: Swift.Optional&lt;Swift.String&gt;, completion: (InstaKids.Sketch) -&gt; ()) -&gt; ()"
-                  moduleName = "InstaKids"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DavidRuvinskiy/Desktop/InstaKids/InstaKids/Services/SketchService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6B39226-7CD8-48D4-AFB4-0990F580A6D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaKids/Services/UserService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "getUserProfile(userId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90B3C3C3-0FD5-422E-8C1D-83604C878124"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaKids/Model/SketchUser.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "init(snapshot:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47B7C6F5-AB91-4416-BC50-30EC64DDF090"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaKids/Controller/DrawingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "setupToolPicker()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8FC3751-C965-4083-B4E6-C53A5C023F9F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InstaKids/Controller/CreateProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "handleCreateProfileDrawing()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

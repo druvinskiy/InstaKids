@@ -23,11 +23,19 @@
 		B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */; };
+		B8DEA7512427E495008FC0D2 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7502427E495008FC0D2 /* UserCell.swift */; };
+		B8DEA7532427E546008FC0D2 /* IKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7522427E546008FC0D2 /* IKImageView.swift */; };
+		B8DEA7552427E5E5008FC0D2 /* IKTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7542427E5E5008FC0D2 /* IKTitleLabel.swift */; };
+		B8DEA7572427FFDA008FC0D2 /* IKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */; };
+		B8DEA759242801BC008FC0D2 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */; };
+		B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA75A242801EA008FC0D2 /* Bindable.swift */; };
 		B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AC241ED1B100C28356 /* AppDelegate.swift */; };
 		B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */; };
 		B8EC99B4241ED1B100C28356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B2241ED1B100C28356 /* Main.storyboard */; };
 		B8EC99B6241ED1B700C28356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B5241ED1B700C28356 /* Assets.xcassets */; };
 		B8EC99B9241ED1B700C28356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B7241ED1B700C28356 /* LaunchScreen.storyboard */; };
+		B8FC17872427D5FB005B1E1E /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC17862427D5FB005B1E1E /* UsersListViewController.swift */; };
+		B8FC17892427E041005B1E1E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC17882427E041005B1E1E /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +56,12 @@
 		B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B8DEA7502427E495008FC0D2 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		B8DEA7522427E546008FC0D2 /* IKImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKImageView.swift; sourceTree = "<group>"; };
+		B8DEA7542427E5E5008FC0D2 /* IKTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKTitleLabel.swift; sourceTree = "<group>"; };
+		B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKTextField.swift; sourceTree = "<group>"; };
+		B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		B8DEA75A242801EA008FC0D2 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		B8EC99A9241ED1B100C28356 /* InstaKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EC99AC241ED1B100C28356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +69,8 @@
 		B8EC99B5241ED1B700C28356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8EC99B8241ED1B700C28356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8EC99BA241ED1B700C28356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8FC17862427D5FB005B1E1E /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		B8FC17882427E041005B1E1E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		D74FBA3E8B79646C6010B3FC /* Pods-InstaKids.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaKids.debug.xcconfig"; path = "Target Support Files/Pods-InstaKids/Pods-InstaKids.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				B8365FF02422A9C70017F5A7 /* Constants.swift */,
+				B8FC17882427E041005B1E1E /* UIHelper.swift */,
+				B8DEA75A242801EA008FC0D2 /* Bindable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -148,6 +166,10 @@
 			isa = PBXGroup;
 			children = (
 				B85C65782421BCA500EACDD7 /* SketchCell.swift */,
+				B8DEA7502427E495008FC0D2 /* UserCell.swift */,
+				B8DEA7522427E546008FC0D2 /* IKImageView.swift */,
+				B8DEA7542427E5E5008FC0D2 /* IKTitleLabel.swift */,
+				B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +181,7 @@
 				B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */,
 				B8365FE92422A7930017F5A7 /* LoginViewController.swift */,
 				B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */,
+				B8FC17862427D5FB005B1E1E /* UsersListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -169,6 +192,7 @@
 				B8BF80E0241FEF370003A9E6 /* Sketch.swift */,
 				A650B849242134D800F55712 /* PersistanceManager.swift */,
 				B8365FED2422A9340017F5A7 /* SketchUser.swift */,
+				B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,19 +341,27 @@
 			files = (
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
+				B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */,
 				B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
 				B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */,
+				B8FC17892427E041005B1E1E /* UIHelper.swift in Sources */,
+				B8DEA7512427E495008FC0D2 /* UserCell.swift in Sources */,
+				B8FC17872427D5FB005B1E1E /* UsersListViewController.swift in Sources */,
 				B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */,
 				A68FD0E52421A6DB00C1DD35 /* UIColorExtension.swift in Sources */,
+				B8DEA7552427E5E5008FC0D2 /* IKTitleLabel.swift in Sources */,
 				B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */,
 				B8365FF12422A9C70017F5A7 /* Constants.swift in Sources */,
+				B8DEA759242801BC008FC0D2 /* RegistrationViewModel.swift in Sources */,
 				B8365FEC2422A8F00017F5A7 /* UserService.swift in Sources */,
 				B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */,
 				A650B84A242134D800F55712 /* PersistanceManager.swift in Sources */,
 				B8365FF32422ABDE0017F5A7 /* LocalStorageService.swift in Sources */,
+				B8DEA7572427FFDA008FC0D2 /* IKTextField.swift in Sources */,
 				B8365FEA2422A7930017F5A7 /* LoginViewController.swift in Sources */,
 				B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */,
+				B8DEA7532427E546008FC0D2 /* IKImageView.swift in Sources */,
 				A650B84C2421378F00F55712 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				INFOPLIST_FILE = InstaKids/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,6 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				INFOPLIST_FILE = InstaKids/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

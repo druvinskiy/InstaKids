@@ -16,7 +16,7 @@ class LocalStorageService {
         let defaults = UserDefaults.standard
         
         defaults.setValue(user.userId, forKey: Constants.localStorage.storedUserId)
-        defaults.setValue(user.usermname, forKey: Constants.localStorage.storedUsername)
+        defaults.setValue(user.username, forKey: Constants.localStorage.storedUsername)
     }
     
     static func loadCurrentUser() -> SketchUser? {
@@ -33,7 +33,7 @@ class LocalStorageService {
         }
         
         //Return the user
-        let u = SketchUser(usermname: userName!, userId: userId!)
+        let u = SketchUser(userId: userName!, username: userId!)
         return u
     }
     

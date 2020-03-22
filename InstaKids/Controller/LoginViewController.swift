@@ -59,8 +59,9 @@ extension LoginViewController: FUIAuthDelegate {
                     UserService.getUserProfile(userId: user.uid) { (u) in
                         
                         if u == nil {
-                            //No profile, go to Profile Controller
-                            self.performSegue(withIdentifier: Constants.Segue.profileViewController, sender: self)
+                            let createProfileVC = CreateProfileViewController()
+                            
+                            self.present(createProfileVC, animated: true)
                         }
                         else {
                             
@@ -68,7 +69,7 @@ extension LoginViewController: FUIAuthDelegate {
                             LocalStorageService.saveCurrentUser(user: u!)
                             
                             //This user has a profile, go to tab controller
-                            let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.feedController)
+                            let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController)
                             
                             self.view.window?.rootViewController = tabBarVC
                             self.view.window?.makeKeyAndVisible()

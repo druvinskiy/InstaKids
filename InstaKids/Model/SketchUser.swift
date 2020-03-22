@@ -7,9 +7,35 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-struct SketchUser {
-    
-    var usermname: String?
+struct SketchUser: Hashable {
     var userId: String?
+    var username: String?
+    
+    init?(snapshot:DataSnapshot) {
+        
+        let userData = snapshot.value as? [String:String]
+        
+        if let userData = userData {
+            
+            let userId = snapshot.key
+            let usermname = userData["username"]
+            
+            guard usermname != nil else {
+                return nil
+            }
+            
+            self.userId = userId
+            self.username = usermname
+            
+        } else {
+            return nil
+        }
+    }
+    
+    init(userId: String, username: String) {
+        self.userId = userId
+        self.username = username
+    }
 }

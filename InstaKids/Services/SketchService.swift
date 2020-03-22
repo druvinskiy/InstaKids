@@ -113,7 +113,7 @@ class SketchService {
                 let dateString = dateFormatter.string(from: Date())
                 
                 //Create sketch data
-                let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, "drawingUrl" : drawingUrl!.absoluteString, "imageUrl" : imageUrl!.absoluteString]
+                let photoData = ["byId": user!.userId!, "byUsername": user!.username!, "date": dateString, "drawingUrl" : drawingUrl!.absoluteString, "imageUrl" : imageUrl!.absoluteString]
                 
                 let root = "sketches"
                 let dbRef: DatabaseReference
@@ -128,7 +128,7 @@ class SketchService {
                     
                     guard error == nil else { return }
                     
-                    let sketch = Sketch(sketchId: dbRef.key!, byId: user!.userId!, byUsername: user!.usermname!, dateCreated: dateString, drawingUrl: drawingUrl!.absoluteString, imageUrl: imageUrl!.absoluteString)
+                    let sketch = Sketch(sketchId: dbRef.key!, byId: user!.userId!, byUsername: user!.username!, dateCreated: dateString, drawingUrl: drawingUrl!.absoluteString, imageUrl: imageUrl!.absoluteString)
                     
 //                    getSketches { (sketches) in
 //                        let updatedSketch = sketches.first { (sketch) -> Bool in

@@ -11,38 +11,29 @@ import UIKit
 class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var sketches = [Sketch]()
-        
-    fileprivate func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        configureTabBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        DispatchQueue.global(qos: .userInteractive).async{
-//            PersistanceManager.retrieveSketches { (result) in
-//                switch result{
-//                case .success(let sketches):
-//                    DispatchQueue.main.async {
-//                        self.sketches = sketches
-//                        self.tableView.reloadData()
-//                    }
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-        
         SketchService.getSketches { (sketches) in
             self.sketches = sketches
             self.tableView.reloadData()
         }
+    }
+    
+    fileprivate func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    fileprivate func configureTabBar() {
+        tabBarController?.delegate = self
     }
 
     @IBAction func addDrawing(_ sender: UIBarButtonItem) {
@@ -75,5 +66,11 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
         
         drawingViewController.sketch = sketches[indexPath.row]
         navigationController?.pushViewController(drawingViewController, animated: true)
+    }
+}
+
+extension FeedViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(tabBarController.tabBar.selectedItem?.title)
     }
 }

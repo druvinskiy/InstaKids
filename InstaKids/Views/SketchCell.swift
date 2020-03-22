@@ -12,9 +12,11 @@ class SketchCell: UITableViewCell {
     
     @IBOutlet weak var sketchImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     func set(with sketch: Sketch){
         dateLabel.text = sketch.dateCreated
+        usernameLabel.text = sketch.byUsername
         
         guard let imageUrl = sketch.imageUrl else { return }
         

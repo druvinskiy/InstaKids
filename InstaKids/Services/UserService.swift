@@ -11,6 +11,32 @@ import FirebaseDatabase
 
 class UserService {
     
+    static func getUsers(completion: @escaping ([SketchUser]) -> Void) -> Void {
+        
+        let dbRef = Database.database().reference()
+        
+        dbRef.child("users").observeSingleEvent(of: .value) { (snapshot) in
+            
+            var retrievedUsers = [SketchUser]()
+            
+            let snapshots = snapshot.children.allObjects as? [DataSnapshot]
+            
+            if let snapshots = snapshots {
+                
+                for snap in snapshots {
+                    
+                    let user = SketchUser(snapshot: snap)
+                    
+                    if user != nil {
+                        retrievedUsers.insert(user!, at: 0)
+                    }
+                }
+            }
+            
+            completion(retrievedUsers)
+        }
+    }
+    
     static func createUserProfile(userId: String, username: String, completion: @escaping (SketchUser?) -> Void) -> Void {
         
         //Create a dictionary for the user profile
@@ -28,7 +54,7 @@ class UserService {
             }
             else {
                 //Create a user and pass it back
-                let u = SketchUser(usermname: username, userId: userId)
+                let u = SketchUser(userId: userId, username: username)
                 completion(u)
             }
         }
@@ -42,21 +68,11 @@ class UserService {
         //Try to retrieve the profile for the passed in userid
         ref.child("users").child(userId).observeSingleEvent(of: .value) { (snapshot) in
             
-            //Check the returned snapshot value to see if there is a profile
-            if let userProfileData = snapshot.value as? [String:Any] {
-                
-                //This means there is a profile
-                //Create a photo user with the profile details
-                var u = SketchUser()
-                u.userId = snapshot.key
-                u.usermname = userProfileData["username"] as? String
-                
-                //Pass it into the completion closure
-                completion(u)
+            let user = SketchUser(snapshot: snapshot)
+            
+            if user != nil {
+                completion(user!)
             } else {
-                
-                //This means there wasn't a profile
-                //Return nil
                 completion(nil)
             }
         }

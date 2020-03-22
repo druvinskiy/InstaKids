@@ -14,5 +14,6 @@ target 'InstaKids' do
   pod 'Firebase/Auth'
   pod 'FirebaseUI/Email'
   pod 'JGProgressHUD'
+  pod 'LBTATools'
 
 end
