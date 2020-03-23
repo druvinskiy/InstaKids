@@ -20,14 +20,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="CoC-C4-WOu">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="undo" id="fuH-KK-Vlg">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </barButtonItem>
-                            <barButtonItem title="Save" style="done" id="KB4-6i-nVp">
+                            <barButtonItem style="done" systemItem="save" id="KB4-6i-nVp">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="save:" destination="auM-u0-qKz" id="Kyr-uS-ITe"/>
                                 </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="undo" id="fuH-KK-Vlg">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </barButtonItem>
                             <barButtonItem systemItem="redo" id="Dd7-Tt-z08">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -330,7 +330,7 @@
         <!--Navigation Controller-->
         <scene sceneID="VeA-52-0xA">
             <objects>
-                <navigationController storyboardIdentifier="DrawingNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="2AF-hK-EGo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DrawingNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" id="2AF-hK-EGo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vwp-2i-3ZH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

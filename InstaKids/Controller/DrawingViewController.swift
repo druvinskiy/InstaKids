@@ -18,7 +18,6 @@ class DrawingViewController: UIViewController {
     var canvasView: PKCanvasView!
     var creatingProfileDrawing = false
     var handleCreateProfileDrawing: ((UIImage) -> Void)?
-    //var window: UIWindow!
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
@@ -28,7 +27,7 @@ class DrawingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftItemsSupplementBackButton = true
+        //navigationItem.leftItemsSupplementBackButton = true
         
         let canvasView = PKCanvasView(frame: view.bounds)
         self.canvasView = canvasView
@@ -58,7 +57,7 @@ class DrawingViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         setupToolPicker()
     }
 

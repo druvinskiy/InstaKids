@@ -16,10 +16,9 @@ class RegistrationViewModel {
     
     var username: String? { didSet {checkFormValidity()} }
     var email: String? { didSet {checkFormValidity()} }
-    var password: String? { didSet {checkFormValidity()} }
     
     func checkFormValidity() {
-        let isFormValid = username?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && bindableImage.value != nil
+        let isFormValid = username?.isEmpty == false && bindableImage.value != nil
         bindableIsFormValid.value = isFormValid
     }
 }

@@ -20,15 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-//        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController
-//        
-//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-//        window?.windowScene = windowScene
-//        
-//        window?.rootViewController = loginVC
-//        window?.makeKeyAndVisible()
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController
+        
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        
+        window?.rootViewController = loginVC
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

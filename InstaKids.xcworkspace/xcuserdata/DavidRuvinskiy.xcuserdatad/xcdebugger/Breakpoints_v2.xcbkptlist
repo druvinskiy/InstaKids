@@ -151,16 +151,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90B3C3C3-0FD5-422E-8C1D-83604C878124"
+            uuid = "068FE64B-A805-4B73-AB70-FA13414A940B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaKids/Model/SketchUser.swift"
+            filePath = "InstaKids/Controller/CreateProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "init(snapshot:)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "handleRegister()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
