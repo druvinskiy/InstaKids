@@ -25,6 +25,9 @@
                             </barButtonItem>
                             <barButtonItem title="Save" style="done" id="KB4-6i-nVp">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="save:" destination="auM-u0-qKz" id="Kyr-uS-ITe"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="redo" id="Dd7-Tt-z08">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -60,6 +60,7 @@ extension LoginViewController: FUIAuthDelegate {
                         
                         if u == nil {
                             let createProfileVC = CreateProfileViewController()
+                            createProfileVC.window = self.view.window
                             
                             self.present(createProfileVC, animated: true)
                         }

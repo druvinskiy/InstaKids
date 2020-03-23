@@ -15,17 +15,19 @@ class CreateProfileViewController: UIViewController {
     
     //var delegate: LoginControllerDelegate?
     
+    var window: UIWindow!
+    
     // UI Components
     let createProfileDrawing: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Draw a picture of yourself", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
         button.addTarget(self, action: #selector(handleCreateProfileDrawing), for: .touchUpInside)
-        button.imageView?.contentMode = .scaleAspectFill
+        button.imageView?.contentMode = .scaleAspectFit
         button.clipsToBounds = true
         return button
     }()
@@ -47,6 +49,9 @@ class CreateProfileViewController: UIViewController {
             self.registrationViewModel.bindableImage.value = image
             self.registrationViewModel.checkFormValidity()
         }
+        
+        drawingViewController.creatingProfileDrawing = true
+        //drawingViewController.window = window
         
         drawingNavigationController.modalPresentationStyle = .fullScreen
         present(drawingNavigationController, animated: true)

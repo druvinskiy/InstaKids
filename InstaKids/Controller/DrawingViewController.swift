@@ -18,6 +18,7 @@ class DrawingViewController: UIViewController {
     var canvasView: PKCanvasView!
     var creatingProfileDrawing = false
     var handleCreateProfileDrawing: ((UIImage) -> Void)?
+    //var window: UIWindow!
     
     @IBOutlet weak var undoButton: UIBarButtonItem!
     @IBOutlet weak var redoButton: UIBarButtonItem!
@@ -53,6 +54,11 @@ class DrawingViewController: UIViewController {
         
         canvasView.backgroundColor = .offWhite
         
+        //setupToolPicker()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         setupToolPicker()
     }
 
@@ -81,7 +87,7 @@ class DrawingViewController: UIViewController {
         let imageWithBackgroundColor = image.withBackground(color: .white)
         
         saveHUD.textLabel.text = "Saving"
-        saveHUD.show(in: self.view)
+        //saveHUD.show(in: self.view)
         
         view.isUserInteractionEnabled = false
         navigationController?.navigationBar.isUserInteractionEnabled = false
@@ -94,6 +100,7 @@ class DrawingViewController: UIViewController {
         if creatingProfileDrawing {
             if let handleProfileDrawing = handleCreateProfileDrawing {
                 handleProfileDrawing(imageWithBackgroundColor)
+                dismiss(animated: true)
                 return
             }
         }
