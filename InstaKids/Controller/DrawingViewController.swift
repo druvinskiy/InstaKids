@@ -91,7 +91,9 @@ class DrawingViewController: UIViewController {
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
         let imageWithBackgroundColor = image.withBackground(color: .offWhite)
         
-        SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor)
+        SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor, sketchId: sketch?.sketchId) { (sketch) in
+            self.sketch = sketch
+        }
     }
     
 }

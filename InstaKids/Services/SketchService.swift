@@ -50,7 +50,7 @@ class SketchService {
         }
     }
     
-    static func saveSketch(drawing: PKDrawing, thumbnailImage: UIImage) {
+    static func saveSketch(drawing: PKDrawing, thumbnailImage: UIImage, sketchId: String?, completion: @escaping (Sketch) -> Void) {
         
         do {
             //let encoder = JSONEncoder()
@@ -80,16 +80,16 @@ class SketchService {
                     
                     guard error == nil else { return }
                     
-                    createSketchDatabaseEntry(drawingRef: drawingRef, imageRef: imageRef)
+                    createSketchDatabaseEntry(drawingRef: drawingRef, imageRef: imageRef, sketchId: sketchId) { (sketch) in
+                        completion(sketch)
+                    }
                 }
             }
             
-        } catch {
-            print(error.localizedDescription)
         }
     }
     
-    private static func createSketchDatabaseEntry(drawingRef: StorageReference, imageRef: StorageReference) {
+    private static func createSketchDatabaseEntry(drawingRef: StorageReference, imageRef: StorageReference, sketchId: String?, completion: @escaping (Sketch) -> Void) {
         
         //Get a download url for the photo
         drawingRef.downloadURL { (drawingUrl, error) in
@@ -115,17 +115,30 @@ class SketchService {
                 //Create sketch data
                 let photoData = ["byId": user!.userId!, "byUsername": user!.usermname!, "date": dateString, "drawingUrl" : drawingUrl!.absoluteString, "imageUrl" : imageUrl!.absoluteString]
                 
-                //Write a database entry
-                let dbRef = Database.database().reference().child("sketches").childByAutoId()
+                let root = "sketches"
+                let dbRef: DatabaseReference
+                
+                if sketchId != nil {
+                    dbRef = Database.database().reference().child(root).child(sketchId!)
+                } else {
+                    dbRef = Database.database().reference().child(root).childByAutoId()
+                }
+                
                 dbRef.setValue(photoData, withCompletionBlock: { (error, dbRef) in
                     
-                    if error != nil {
-                        //There was an error in witing the database entry
-                        return
-                    }
-                    else {
-                        //Database entry for the photo was written
-                    }
+                    guard error == nil else { return }
+                    
+                    let sketch = Sketch(sketchId: dbRef.key!, byId: user!.userId!, byUsername: user!.usermname!, dateCreated: dateString, drawingUrl: drawingUrl!.absoluteString, imageUrl: imageUrl!.absoluteString)
+                    
+//                    getSketches { (sketches) in
+//                        let updatedSketch = sketches.first { (sketch) -> Bool in
+//                            sketch.sketchId == dateString
+//                        }
+//
+//                        completion(updatedSketch!)
+//                    }
+                    
+                    completion(sketch)
                 })
             }
         }

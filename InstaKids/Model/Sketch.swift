@@ -66,7 +66,6 @@ import PencilKit
 import FirebaseDatabase
 
 class Sketch: Codable, Equatable {
-    
     var sketchId:String?
     var byId:String?
     var byUsername:String?
@@ -105,6 +104,15 @@ class Sketch: Codable, Equatable {
             self.drawingUrl = drawingUrl
             self.imageUrl = imageUrl
         }
+    }
+    
+    init(sketchId: String, byId: String, byUsername: String, dateCreated: String, drawingUrl: String, imageUrl: String) {
+        self.sketchId = sketchId
+        self.byId = byId
+        self.byUsername = byUsername
+        self.dateCreated = dateCreated
+        self.drawingUrl = drawingUrl
+        self.imageUrl = imageUrl
     }
     
 //    init(thumbnailImage: UIImage, drawing: PKDrawing, dateCreated: Date) {
