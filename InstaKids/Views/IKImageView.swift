@@ -26,4 +26,11 @@ class IKImageView: UIImageView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func downloadImage(from urlString: String) {
+        SketchService.downloadData(from: urlString) { (data) in
+            guard let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async { self.image = image }
+        }
+    }
 }

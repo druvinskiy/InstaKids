@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 class UserService {
     
@@ -37,27 +38,67 @@ class UserService {
         }
     }
     
-    static func createUserProfile(userId: String, username: String, completion: @escaping (SketchUser?) -> Void) -> Void {
+    static func createUserProfile(userId: String, username: String, profileImage: UIImage, completion: @escaping (SketchUser?) -> Void) {
         
-        //Create a dictionary for the user profile
-        let userProfileData = ["username":username]
+        //Get data representation of the image
+        let photoData = profileImage.jpegData(compressionQuality: 0.1)
         
-        //Get a dadabase reference
-        let ref = Database.database().reference()
+        guard photoData != nil else {
+            print("Couldn't turn the image into data")
+            return
+        }
         
-        //Create the profile for the userid
-        ref.child("users").child(userId).setValue(userProfileData) { (error, ref) in
+        //Get a storage reference
+        let filename = UUID().uuidString
+        
+        let ref = Storage.storage().reference().child("profileImages/\(userId)/\(filename).jpg")
+        
+        //Upload the photo
+        ref.putData(photoData!, metadata: nil) { (metadata, error) in
             
             if error != nil {
-                //There was an error
-                completion(nil)
+                //An error during upload occured
             }
             else {
-                //Create a user and pass it back
-                let u = SketchUser(userId: userId, username: username)
-                completion(u)
+                //Upload was successfull, now create a database entry
+                createUserDatabaseEntry(ref: ref, userId: userId, username: username) { (user) in
+                    completion(user)
+                }
             }
         }
+    }
+    
+    private static func createUserDatabaseEntry(ref: StorageReference, userId: String, username: String, completion: @escaping (SketchUser?) -> Void) {
+        
+        //Get a download url for the photo
+        ref.downloadURL { (url, error) in
+            
+            if error != nil {
+                //Couldn't retrieve the url
+                return
+            } else {
+                //Create a dictionary for the user profile
+                let userProfileData = ["username":username, "profileImageUrl" : url!.absoluteString]
+                
+                //Get a dadabase reference
+                let ref = Database.database().reference()
+                
+                //Create the profile for the userid
+                ref.child("users").child(userId).setValue(userProfileData) { (error, ref) in
+                    
+                    if error != nil {
+                        //There was an error
+                        completion(nil)
+                    }
+                    else {
+                        //Create a user and pass it back
+                        let u = SketchUser(userId: userId, username: username)
+                        completion(u)
+                    }
+                }
+            }
+        }
+        
     }
     
     static func getUserProfile(userId: String, completion: @escaping (SketchUser?) -> Void) -> Void {

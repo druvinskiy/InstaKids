@@ -19,7 +19,7 @@ extension UITabBarController {
         let userVC = UsersListViewController()
         userVC.tabBarItem = UITabBarItem(title: "Users", image: #imageLiteral(resourceName: "UserIcon"), tag: 2)
         
-        tabbar.viewControllers = [feedVC, myDrawingsVC, userVC]
+        tabbar.viewControllers = [feedVC, myDrawingsVC, UINavigationController(rootViewController: userVC)]
         
         return tabbar
     }

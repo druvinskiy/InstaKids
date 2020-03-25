@@ -130,14 +130,6 @@ class SketchService {
                     
                     let sketch = Sketch(sketchId: dbRef.key!, byId: user!.userId!, byUsername: user!.username!, dateCreated: dateString, drawingUrl: drawingUrl!.absoluteString, imageUrl: imageUrl!.absoluteString)
                     
-//                    getSketches { (sketches) in
-//                        let updatedSketch = sketches.first { (sketch) -> Bool in
-//                            sketch.sketchId == dateString
-//                        }
-//
-//                        completion(updatedSketch!)
-//                    }
-                    
                     completion(sketch)
                 })
             }

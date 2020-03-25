@@ -20,7 +20,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SketchCell" rowHeight="418" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SketchCell" rowHeight="418" id="Rrw-HF-pr2" customClass="SketchCell" customModule="InstaKids" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="418"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rrw-HF-pr2" id="TZY-D4-kHc">
@@ -75,7 +75,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="InstaKids" id="ag9-bD-5uR">
                         <barButtonItem key="backBarButtonItem" title="Back" id="EqK-hm-O4i"/>
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="h2w-sq-bPx">
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="h2w-sq-bPx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addDrawing:" destination="Bfc-gi-Yjf" id="BXF-O0-Qe3"/>
@@ -144,7 +144,7 @@
     </scenes>
     <resources>
         <image name="instagram" width="512" height="512"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="plus" width="64" height="56"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

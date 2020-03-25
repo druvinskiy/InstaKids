@@ -21,7 +21,7 @@ class UserCell: UICollectionViewCell {
     
     func set(user: SketchUser) {
         usernameLabel.text = user.username
-//        avatarImageView.downloadImage(from: follower.avatarUrl)
+        avatarImageView.downloadImage(from: user.profileImageUrl ?? "")
     }
     
     private func configure() {

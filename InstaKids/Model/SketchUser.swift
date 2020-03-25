@@ -12,6 +12,7 @@ import FirebaseDatabase
 struct SketchUser: Hashable {
     var userId: String?
     var username: String?
+    var profileImageUrl: String?
     
     init?(snapshot:DataSnapshot) {
         
@@ -21,13 +22,15 @@ struct SketchUser: Hashable {
             
             let userId = snapshot.key
             let usermname = userData["username"]
+            let profileImageUrl = userData["profileImageUrl"]
             
-            guard usermname != nil else {
+            guard usermname != nil, profileImageUrl != nil else {
                 return nil
             }
             
             self.userId = userId
             self.username = usermname
+            self.profileImageUrl = profileImageUrl
             
         } else {
             return nil

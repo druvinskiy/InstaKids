@@ -20,7 +20,6 @@
 		B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */; };
 		B850C3EA24230420002D87E0 /* SketchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E924230420002D87E0 /* SketchService.swift */; };
 		B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C65782421BCA500EACDD7 /* SketchCell.swift */; };
-		B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */; };
 		B8DEA7512427E495008FC0D2 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7502427E495008FC0D2 /* UserCell.swift */; };
@@ -55,7 +54,6 @@
 		B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		B850C3E924230420002D87E0 /* SketchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchService.swift; sourceTree = "<group>"; };
 		B85C65782421BCA500EACDD7 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
-		B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B8DEA7502427E495008FC0D2 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */,
-				B8BF80DE241FED9E0003A9E6 /* DrawingViewController.swift */,
 				B8365FE92422A7930017F5A7 /* LoginViewController.swift */,
 				B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */,
 				B8FC17862427D5FB005B1E1E /* UsersListViewController.swift */,
@@ -349,7 +346,6 @@
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
 				B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */,
-				B8BF80DF241FED9E0003A9E6 /* DrawingViewController.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
 				B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */,
 				B8FC17892427E041005B1E1E /* UIHelper.swift in Sources */,

@@ -91,7 +91,7 @@ class CreateProfileViewController: UIViewController {
         }
 
         //Call User Service to create the profile
-        UserService.createUserProfile(userId: Auth.auth().currentUser!.uid, username: username!) { (u) in
+        UserService.createUserProfile(userId: Auth.auth().currentUser!.uid, username: username!, profileImage: registrationViewModel.bindableImage.value!) { (u) in
 
             //Check if the profile was created
             if u == nil {
