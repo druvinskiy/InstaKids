@@ -9,71 +9,72 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    private let sketchDataSource = SketchDataSource()
+    var sketches = [Sketch]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        configureTabBar()
+        setNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        //Configure the tableview
+        SketchService.getSketches { (sketches) in
+            self.sketches = sketches
+            self.tableView.reloadData()
+        }
+    }
+    
+    fileprivate func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        
-        sketchDataSource.observers.append(self)
-        
-//        navigationItem.rightBarButtonItem =
-//        UIBarButtonItem(
-//          barButtonSystemItem: .add,
-//          target: self,
-//          action: #selector(addDrawing(_:)))
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    fileprivate func configureTabBar() {
+        tabBarController?.delegate = self
     }
     
-    @IBAction func addDrawing(_ sender: UIBarButtonItem) {
-      sketchDataSource.addDrawing()
-      tableView.reloadData()
+    @objc func addDrawing() {
+        let drawingVC = DrawingVC(sketch: nil)
+        drawingVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(drawingVC, animated: true)
+    }
+    
+    func setNavigationBar() {
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawing))
+        
+        navigationItem.rightBarButtonItem = addItem
+        navigationItem.leftItemsSupplementBackButton = true
     }
 }
 
 extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sketchDataSource.sketches.count
+        return sketches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.feedSketchTableCellId, for: indexPath) as! SketchCell
         
-        //Get a photo cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! SketchCell
-        
-        cell.backgroundColor = UIColor.lightGray
-        cell.thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        if let thumbnailImage = sketchDataSource.sketches[indexPath.row].thumbnailImage {
-          cell.sketchImage = thumbnailImage
-        }
+        let sketch = sketches[indexPath.row]
+        cell.set(with: sketch)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let drawingViewController = storyboard?.instantiateViewController(identifier: "DrawingViewController") as? DrawingViewController,
-          let navigationController = navigationController else {
-            return
-        }
-        drawingViewController.sketch = sketchDataSource.sketches[indexPath.row]
-        drawingViewController.sketchDataSource = sketchDataSource
-        navigationController.pushViewController(drawingViewController, animated: true)
+        let drawingVC = DrawingVC(sketch: sketches[indexPath.row])
+        drawingVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(drawingVC, animated: true)
     }
 }
 
-extension FeedViewController: SketchDataSourceObserver {
-  func thumbnailDidUpdate(_ thumbnail: UIImage) {
-    tableView.reloadData()
-  }
+extension FeedViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(tabBarController.tabBar.selectedItem?.title)
+    }
 }
