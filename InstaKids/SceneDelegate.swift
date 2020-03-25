@@ -18,17 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController
-        
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        
-        window?.rootViewController = loginVC
-        window?.makeKeyAndVisible()
+        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -42,20 +32,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         
-        //Check local storage to see if a user is saved
         let user = LocalStorageService.loadCurrentUser()
         
         if user != nil {
             
             //Create a tab bar controller
-            let tabBarVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
-            
-            let userListVC = UsersListViewController()
-            tabBarVC.viewControllers?.append(userListVC)
-            
-            guard let item = userListVC.tabBarItem else { return }
-            item.title = "Users"
-            item.image = UIImage(named: "UserIcon")
+            let tabBarVC = UITabBarController.createTabbar()
             
             //Show it
             window?.rootViewController = tabBarVC

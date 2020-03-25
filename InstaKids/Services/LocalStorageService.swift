@@ -33,7 +33,7 @@ class LocalStorageService {
         }
         
         //Return the user
-        let u = SketchUser(userId: userName!, username: userId!)
+        let u = SketchUser(userId: userId!, username: userName!)
         return u
     }
     

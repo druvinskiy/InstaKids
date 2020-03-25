@@ -31,26 +31,14 @@ class CreateProfileViewController: UIViewController {
     }()
     
     @objc func handleCreateProfileDrawing() {
-//        let imagePickerController = UIImagePickerController()
-//        imagePickerController.delegate = self
-//        present(imagePickerController, animated: true)
+        let drawingVC = DrawingVC(sketch: nil)
         
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let drawingNavigationController = storyboard.instantiateViewController(identifier: DrawingViewController.reuseID) as? UINavigationController else {
-            return
-        }
-        
-        guard let drawingViewController = drawingNavigationController.viewControllers.first as? DrawingViewController else { return }
-        
-        drawingViewController.handleCreateProfileDrawing = { (image) in
+        drawingVC.createProfileDrawing = { image in
             self.registrationViewModel.bindableImage.value = image
             self.registrationViewModel.checkFormValidity()
         }
         
-        drawingViewController.creatingProfileDrawing = true
-        drawingNavigationController.modalPresentationStyle = .fullScreen
-        present(drawingNavigationController, animated: true)
+        navigationController?.pushViewController(drawingVC, animated: true)
     }
     
     let usernameTextField: IKTextField = {
@@ -114,9 +102,11 @@ class CreateProfileViewController: UIViewController {
 
                 //Save user to local storage
                 LocalStorageService.saveCurrentUser(user: u!)
-
-                //Go to the tab bar controller
-                let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController)
+                
+                //Create a tab bar controller
+                let tabBarVC = UITabBarController.createTabbar()
+                
+                //Show it
                 self.view.window?.rootViewController = tabBarVC
                 self.view.window?.makeKeyAndVisible()
             }
@@ -140,6 +130,10 @@ class CreateProfileViewController: UIViewController {
         setupNotificationObservers()
         setupTapGesture()
         setupRegistrationViewModelObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK:- Private

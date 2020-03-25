@@ -16,6 +16,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         configureTabBar()
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,12 +36,18 @@ class FeedViewController: UIViewController {
     fileprivate func configureTabBar() {
         tabBarController?.delegate = self
     }
-
-    @IBAction func addDrawing(_ sender: UIBarButtonItem) {
-      guard let drawingViewController = storyboard?.instantiateViewController(identifier: DrawingViewController.reuseID) as? DrawingViewController else {
-          return
-      }
-      navigationController?.pushViewController(drawingViewController, animated: true)
+    
+    @objc func addDrawing() {
+        let drawingVC = DrawingVC(sketch: nil)
+        drawingVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(drawingVC, animated: true)
+    }
+    
+    func setNavigationBar() {
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawing))
+        
+        navigationItem.rightBarButtonItem = addItem
+        navigationItem.leftItemsSupplementBackButton = true
     }
 }
 
@@ -55,17 +62,14 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
         
         let sketch = sketches[indexPath.row]
         cell.set(with: sketch)
-
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let drawingViewController = storyboard?.instantiateViewController(identifier: DrawingViewController.reuseID) as? DrawingViewController else {
-            return
-        }
-        
-        drawingViewController.sketch = sketches[indexPath.row]
-        navigationController?.pushViewController(drawingViewController, animated: true)
+        let drawingVC = DrawingVC(sketch: sketches[indexPath.row])
+        drawingVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(drawingVC, animated: true)
     }
 }
 

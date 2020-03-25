@@ -12,8 +12,7 @@ struct Constants {
 
     struct Storyboard {
         
-        static let tabBarController = "MainTabBarController"
-        static let loginNavController = "LoginNavController"
+        static let feedViewController = "FeedViewController"
         static let feedSketchTableCellId = "SketchCell"
     }
     

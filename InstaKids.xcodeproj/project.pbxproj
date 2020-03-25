@@ -29,6 +29,8 @@
 		B8DEA7572427FFDA008FC0D2 /* IKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */; };
 		B8DEA759242801BC008FC0D2 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */; };
 		B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA75A242801EA008FC0D2 /* Bindable.swift */; };
+		B8DEA75F2429A8B3008FC0D2 /* DrawingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */; };
+		B8DEA763242A7E2B008FC0D2 /* UITabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */; };
 		B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AC241ED1B100C28356 /* AppDelegate.swift */; };
 		B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */; };
 		B8EC99B4241ED1B100C28356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B2241ED1B100C28356 /* Main.storyboard */; };
@@ -62,6 +64,8 @@
 		B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKTextField.swift; sourceTree = "<group>"; };
 		B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		B8DEA75A242801EA008FC0D2 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingVC.swift; sourceTree = "<group>"; };
+		B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtension.swift; sourceTree = "<group>"; };
 		B8EC99A9241ED1B100C28356 /* InstaKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EC99AC241ED1B100C28356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			children = (
 				A650B84B2421378F00F55712 /* UIImageExtension.swift */,
 				A68FD0E42421A6DB00C1DD35 /* UIColorExtension.swift */,
+				B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,14 +150,14 @@
 		B8EC99AB241ED1B100C28356 /* InstaKids */ = {
 			isa = PBXGroup;
 			children = (
+				B8EC99AC241ED1B100C28356 /* AppDelegate.swift */,
+				B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */,
 				B8365FEF2422A9B70017F5A7 /* Helpers */,
 				B8365FE8242298240017F5A7 /* Services */,
 				A650B84D242137A200F55712 /* Extensions */,
 				B8EC99C4241EEC1B00C28356 /* Model */,
 				B8EC99C3241EDB0400C28356 /* Controller */,
 				B8EC99C2241EDABA00C28356 /* Views */,
-				B8EC99AC241ED1B100C28356 /* AppDelegate.swift */,
-				B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */,
 				B8EC99B2241ED1B100C28356 /* Main.storyboard */,
 				B8EC99B5241ED1B700C28356 /* Assets.xcassets */,
 				B8EC99B7241ED1B700C28356 /* LaunchScreen.storyboard */,
@@ -182,6 +187,7 @@
 				B8365FE92422A7930017F5A7 /* LoginViewController.swift */,
 				B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */,
 				B8FC17862427D5FB005B1E1E /* UsersListViewController.swift */,
+				B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DEA75F2429A8B3008FC0D2 /* DrawingVC.swift in Sources */,
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
 				B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */,
@@ -358,6 +365,7 @@
 				B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */,
 				A650B84A242134D800F55712 /* PersistanceManager.swift in Sources */,
 				B8365FF32422ABDE0017F5A7 /* LocalStorageService.swift in Sources */,
+				B8DEA763242A7E2B008FC0D2 /* UITabBarControllerExtension.swift in Sources */,
 				B8DEA7572427FFDA008FC0D2 /* IKTextField.swift in Sources */,
 				B8365FEA2422A7930017F5A7 /* LoginViewController.swift in Sources */,
 				B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */,

@@ -1,33 +1,36 @@
 //
-//  DrawingViewController.swift
+//  DrawingVC.swift
 //  InstaKids
 //
-//  Created by David Ruvinskiy on 3/16/20.
+//  Created by David Ruvinskiy on 3/23/20.
 //  Copyright © 2020 David Ruvinskiy. All rights reserved.
 //
 
 import UIKit
 import PencilKit
-import FirebaseAuth
 import JGProgressHUD
 
-class DrawingViewController: UIViewController {
+class DrawingVC: UIViewController {
     
-    static let reuseID = "DrawingNavigationControllerID"
     var sketch: Sketch?
     var canvasView: PKCanvasView!
-    var creatingProfileDrawing = false
-    var handleCreateProfileDrawing: ((UIImage) -> Void)?
-    
-    @IBOutlet weak var undoButton: UIBarButtonItem!
-    @IBOutlet weak var redoButton: UIBarButtonItem!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    //var creatingProfileDrawing = false
+    var createProfileDrawing: ((UIImage) -> Void)?
     
     fileprivate let saveHUD = JGProgressHUD(style: .dark)
     
+    let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+    
+    init(sketch: Sketch?) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.sketch = sketch
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationItem.leftItemsSupplementBackButton = true
+        
+        setNavigationBar()
         
         let canvasView = PKCanvasView(frame: view.bounds)
         self.canvasView = canvasView
@@ -43,24 +46,61 @@ class DrawingViewController: UIViewController {
         }
         
         canvasView.delegate = self
-        self.saveButton.isEnabled = false
+        saveButton.isEnabled = false
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
-        canvasView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        canvasView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        canvasView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        canvasView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        view.addSubview(canvasView)
         
         canvasView.backgroundColor = .offWhite
         
         setupToolPicker()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setNavigationBar() {
+        navigationItem.rightBarButtonItems = []
+        
+        let undoItem = UIBarButtonItem(title: "Undo", style: .plain, target: self, action: #selector(undo))
+        
+        let redoItem = UIBarButtonItem(title: "Redo", style: .plain, target: self, action: #selector(redo))
+        
+        if createProfileDrawing == nil {
+            navigationItem.rightBarButtonItems?.append(saveButton)
+        }
+        
+        navigationItem.rightBarButtonItems?.append(undoItem)
+        navigationItem.rightBarButtonItems?.append(redoItem)
+        
+        //navigationItem.leftItemsSupplementBackButton = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupToolPicker()
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let createProfileDrawing = createProfileDrawing {
+            createProfileDrawing(createImage())
+            navigationController?.popViewController(animated: true)
+            return
+        }
+    }
+    
+    func createImage() -> UIImage {
+        let drawing = canvasView.drawing
+        let image = drawing.image(from: canvasView.frame, scale: 3.0)
+        let imageWithBackgroundColor = image.withBackground(color: .white)
+        
+        return imageWithBackgroundColor
+    }
+    
     func setupToolPicker() {
         if let window = self.parent?.view.window,
             let toolPicker = PKToolPicker.shared(for: window) {
@@ -72,39 +112,27 @@ class DrawingViewController: UIViewController {
         }
     }
     
-    @IBAction func undo(_ sender: UIBarButtonItem) {
+    @objc func undo() {
         undoManager?.undo()
     }
     
-    @IBAction func redo(_ sender: UIBarButtonItem) {
+    @objc func redo() {
         undoManager?.redo()
     }
     
-    @IBAction func save(_ sender: UIBarButtonItem) {
-        let drawing = canvasView.drawing
-        let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let imageWithBackgroundColor = image.withBackground(color: .white)
-        
+    @objc func save() {
         saveHUD.textLabel.text = "Saving"
-        //saveHUD.show(in: self.view)
+        saveHUD.show(in: self.view)
         
         view.isUserInteractionEnabled = false
         navigationController?.navigationBar.isUserInteractionEnabled = false
-        navigationController?.navigationBar.tintColor = UIColor.lightGray
+        navigationController?.navigationBar.tintColor = UIColor.clear
         
         navigationItem.rightBarButtonItems?.forEach({ (button) in
             button.isEnabled = false
         })
         
-        if creatingProfileDrawing {
-            if let handleProfileDrawing = handleCreateProfileDrawing {
-                handleProfileDrawing(imageWithBackgroundColor)
-                dismiss(animated: true)
-                return
-            }
-        }
-
-        SketchService.saveSketch(drawing: drawing, thumbnailImage: imageWithBackgroundColor, sketchId: sketch?.sketchId) { (sketch) in
+        SketchService.saveSketch(drawing: canvasView.drawing, thumbnailImage: createImage(), sketchId: sketch?.sketchId) { (sketch) in
             self.sketch = sketch
             self.saveHUD.dismiss(animated: true)
             
@@ -119,9 +147,13 @@ class DrawingViewController: UIViewController {
             self.saveButton.isEnabled = false
         }
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-extension DrawingViewController: PKToolPickerObserver {
+extension DrawingVC: PKToolPickerObserver {
     func toolPickerSelectedToolDidChange(_ toolPicker: PKToolPicker) {
         if let tool = toolPicker.selectedTool as? PKEraserTool {
             print("Eraser: \(tool.eraserType)")
@@ -149,14 +181,13 @@ extension DrawingViewController: PKToolPickerObserver {
         if obscuredFrame.isNull {
             navigationItem.leftBarButtonItems = []
         } else {
-            navigationItem.leftBarButtonItems = [undoButton, redoButton]
+            //            navigationItem.leftBarButtonItems = [undoButton, redoButton]
         }
     }
 }
 
-extension DrawingViewController: PKCanvasViewDelegate {
+extension DrawingVC: PKCanvasViewDelegate {
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         saveButton.isEnabled = true
     }
 }
-

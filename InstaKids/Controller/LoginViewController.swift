@@ -10,7 +10,7 @@ import UIKit
 import FirebaseUI
 
 class LoginViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -59,9 +59,9 @@ extension LoginViewController: FUIAuthDelegate {
                     UserService.getUserProfile(userId: user.uid) { (u) in
                         
                         if u == nil {
-                            let createProfileVC = CreateProfileViewController()
-                            createProfileVC.modalPresentationStyle = .fullScreen
-                            self.present(createProfileVC, animated: true)
+                            let navigationController = UINavigationController(rootViewController: CreateProfileViewController())
+                            navigationController.modalPresentationStyle = .fullScreen
+                            self.present(navigationController, animated: true)
                         }
                         else {
                             
@@ -69,9 +69,7 @@ extension LoginViewController: FUIAuthDelegate {
                             LocalStorageService.saveCurrentUser(user: u!)
                             
                             //This user has a profile, go to tab controller
-                            let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController)
-                            
-                            self.view.window?.rootViewController = tabBarVC
+                            self.view.window?.rootViewController = UITabBarController.createTabbar()
                             self.view.window?.makeKeyAndVisible()
                         }
                     }
