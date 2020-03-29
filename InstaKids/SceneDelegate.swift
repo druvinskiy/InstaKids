@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if user != nil {
             
             //Create a tab bar controller
-            let tabBarVC = UITabBarController.createTabbar()
+            let tabBarVC = IKTabBarController()
             
             //Show it
             window?.rootViewController = tabBarVC

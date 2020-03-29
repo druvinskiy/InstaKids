@@ -104,7 +104,7 @@ class CreateProfileViewController: UIViewController {
                 LocalStorageService.saveCurrentUser(user: u!)
                 
                 //Create a tab bar controller
-                let tabBarVC = UITabBarController.createTabbar()
+                let tabBarVC = IKTabBarController()
                 
                 //Show it
                 self.view.window?.rootViewController = tabBarVC

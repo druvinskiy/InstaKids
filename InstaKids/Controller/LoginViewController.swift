@@ -69,7 +69,7 @@ extension LoginViewController: FUIAuthDelegate {
                             LocalStorageService.saveCurrentUser(user: u!)
                             
                             //This user has a profile, go to tab controller
-                            self.view.window?.rootViewController = UITabBarController.createTabbar()
+                            self.view.window?.rootViewController = IKTabBarController()
                             self.view.window?.makeKeyAndVisible()
                         }
                     }
