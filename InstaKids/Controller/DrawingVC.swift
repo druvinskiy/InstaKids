@@ -10,12 +10,18 @@ import UIKit
 import PencilKit
 import JGProgressHUD
 
+protocol DrawingVCDelegate {
+    func didCreateDrawing()
+}
+
 class DrawingVC: UIViewController {
     
     var sketch: Sketch?
     var canvasView: PKCanvasView!
     //var creatingProfileDrawing = false
     var createProfileDrawing: ((UIImage) -> Void)?
+    //var delegate: DrawingVCDelegate?
+    var done: (() -> Void)?
     
     fileprivate let saveHUD = JGProgressHUD(style: .dark)
     
@@ -31,6 +37,11 @@ class DrawingVC: UIViewController {
         super.viewDidLoad()
         
         setNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         let canvasView = PKCanvasView(frame: view.bounds)
         self.canvasView = canvasView
@@ -54,11 +65,6 @@ class DrawingVC: UIViewController {
         canvasView.backgroundColor = .offWhite
         
         setupToolPicker()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func setNavigationBar() {
@@ -91,12 +97,14 @@ class DrawingVC: UIViewController {
             navigationController?.popViewController(animated: true)
             return
         }
+        
+        didCreateDrawing()
     }
     
     func createImage() -> UIImage {
         let drawing = canvasView.drawing
         let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let imageWithBackgroundColor = image.withBackground(color: .white)
+        let imageWithBackgroundColor = image.withBackground(color: createProfileDrawing != nil ? UIColor.offWhite : .white)
         
         return imageWithBackgroundColor
     }
@@ -145,7 +153,15 @@ class DrawingVC: UIViewController {
             })
             
             self.saveButton.isEnabled = false
+            self.didCreateDrawing()
+            
         }
+    }
+    
+    func didCreateDrawing() {
+        //self.delegate?.didCreateDrawing()
+        done?()
+        self.navigationController?.popViewController(animated: true)
     }
     
     required init?(coder: NSCoder) {

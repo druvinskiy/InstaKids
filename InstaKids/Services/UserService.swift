@@ -9,12 +9,20 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class UserService {
     
     static func getUsers(completion: @escaping ([SketchUser]) -> Void) -> Void {
         
         let dbRef = Database.database().reference()
+        
+//        dbRef.queryOrdered(byChild: "following")
+//            .queryEqual(toValue: true)
+//            .observeSingleEvent(of: .value) { (snapshot) in
+//                <#code#>
+//        }
+        
         
         dbRef.child("users").observeSingleEvent(of: .value) { (snapshot) in
             
@@ -117,5 +125,15 @@ class UserService {
                 completion(nil)
             }
         }
+    }
+    
+    static func follow(_ followUserId: String) {
+        let currentUserid = Auth.auth().currentUser!.uid
+        
+        let dbRef = Database.database().reference().child("users").child(currentUserid).child("following")
+        
+        let data = [followUserId : true]
+        
+        dbRef.updateChildValues(data)
     }
 }

@@ -9,5 +9,7 @@
 import UIKit
 
 extension UIColor{
-    static let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+//    static let offWhite = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+    
+    static let offWhite = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
 }

@@ -17,6 +17,8 @@ class FeedViewController: UIViewController {
         configureTableView()
         configureTabBar()
         setNavigationBar()
+        
+        navigationItem.leftItemsSupplementBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +28,8 @@ class FeedViewController: UIViewController {
             self.sketches = sketches
             self.tableView.reloadData()
         }
+        
+        self.tabBarController?.navigationItem.title = "InstaKids"
     }
     
     fileprivate func configureTableView() {
@@ -44,10 +48,9 @@ class FeedViewController: UIViewController {
     }
     
     func setNavigationBar() {
-        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawing))
-        
-        navigationItem.rightBarButtonItem = addItem
-        navigationItem.leftItemsSupplementBackButton = true
+//        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawing))
+//
+//        navigationItem.rightBarButtonItem = addItem
     }
 }
 
@@ -75,6 +78,34 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
 
 extension FeedViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(tabBarController.tabBar.selectedItem?.title)
+        let title = tabBarController.tabBar.selectedItem?.title
+        
+        if title == "New Drawing" {
+//            let navigationController = UINavigationController(rootViewController: DrawingVC(sketch: nil))
+            //navigationController.modalPresentationStyle = .fullScreen
+            //present(DrawingVC(sketch: nil), animated: true)
+            
+            let drawingVC = DrawingVC(sketch: nil)
+            drawingVC.done = {
+                tabBarController.selectedIndex = 0
+            }
+            //drawingVC.delegate = self
+            navigationController?.pushViewController(drawingVC, animated: true)
+            
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        if tabBarController.selectedIndex == 1 {
+//            return false
+//        }
+
+        return true
     }
 }
+
+//extension FeedViewController: DrawingVCDelegate {
+//    func didCreateDrawing() {
+//        tabBarController?.selectedIndex = 0
+//    }
+//}
