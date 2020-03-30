@@ -65,6 +65,8 @@ class DrawingVC: UIViewController {
         canvasView.backgroundColor = .offWhite
         
         setupToolPicker()
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func setNavigationBar() {
@@ -161,7 +163,6 @@ class DrawingVC: UIViewController {
     func didCreateDrawing() {
         //self.delegate?.didCreateDrawing()
         done?()
-        self.navigationController?.popViewController(animated: true)
     }
     
     required init?(coder: NSCoder) {

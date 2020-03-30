@@ -30,6 +30,7 @@ class FeedViewController: UIViewController {
         }
         
         self.tabBarController?.navigationItem.title = "InstaKids"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     fileprivate func configureTableView() {
@@ -71,6 +72,11 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let drawingVC = DrawingVC(sketch: sketches[indexPath.row])
+        
+        drawingVC.done = {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
         drawingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(drawingVC, animated: true)
     }
@@ -80,17 +86,23 @@ extension FeedViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let title = tabBarController.tabBar.selectedItem?.title
         
-        if title == "New Drawing" {
-//            let navigationController = UINavigationController(rootViewController: DrawingVC(sketch: nil))
-            //navigationController.modalPresentationStyle = .fullScreen
-            //present(DrawingVC(sketch: nil), animated: true)
+        if title == "New Drawing", let navigationController = viewController as? UINavigationController {
             
             let drawingVC = DrawingVC(sketch: nil)
+            
             drawingVC.done = {
-                tabBarController.selectedIndex = 0
+                //tabBarController.selectedIndex = 0
+                //navigationController.popViewController(animated: true)
+                navigationController.popViewController(animated: true) {
+                }
+                
+                self.tabBarController?.selectedIndex = 0
             }
-            //drawingVC.delegate = self
-            navigationController?.pushViewController(drawingVC, animated: true)
+            
+            drawingVC.hidesBottomBarWhenPushed = true
+            
+            navigationController.pushViewController(viewController: drawingVC, animated: true, completion: {
+            })
             
         }
     }

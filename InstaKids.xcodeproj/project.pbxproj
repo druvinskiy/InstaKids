@@ -20,6 +20,7 @@
 		B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */; };
 		B850C3EA24230420002D87E0 /* SketchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E924230420002D87E0 /* SketchService.swift */; };
 		B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C65782421BCA500EACDD7 /* SketchCell.swift */; };
+		B8AE003124317CE8005F2F4C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C179E3242C1E30004F0875 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E2242C1E30004F0875 /* CardViewModel.swift */; };
 		B8C179E5242C1E70004F0875 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E4242C1E70004F0875 /* CardView.swift */; };
@@ -57,6 +58,7 @@
 		B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		B850C3E924230420002D87E0 /* SketchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchService.swift; sourceTree = "<group>"; };
 		B85C65782421BCA500EACDD7 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
+		B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C179E2242C1E30004F0875 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B8C179E4242C1E70004F0875 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 			children = (
 				A650B84B2421378F00F55712 /* UIImageExtension.swift */,
 				A68FD0E42421A6DB00C1DD35 /* UIColorExtension.swift */,
-				B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */,
+				B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -197,6 +199,7 @@
 		B8EC99C3241EDB0400C28356 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */,
 				B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */,
 				B8365FE92422A7930017F5A7 /* LoginViewController.swift */,
 				B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */,
@@ -364,6 +367,7 @@
 				B8C179E7242C21B4004F0875 /* UsersController.swift in Sources */,
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
+				B8AE003124317CE8005F2F4C /* UINavigationControllerExtension.swift in Sources */,
 				B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
 				B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */,

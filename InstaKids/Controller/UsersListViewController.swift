@@ -52,8 +52,45 @@ class UsersListViewController: UIViewController {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation = false
+        
+        let searchBar = searchController.searchBar
+        // ...
+        // Configure `searchBar` if needed
+        // ...
+
+        let searchTextField: UITextField
+        if #available(iOS 13, *) {
+            searchTextField = searchBar.searchTextField
+        } else {
+            searchTextField = (searchBar.value(forKey: "searchField") as? UITextField) ?? UITextField()
+        }
+
+        // Since iOS 13 SDK, there is no accessor to get the placeholder label.
+        // This is the only workaround that might cause issued during the review.
+        if let systemPlaceholderLabel = searchTextField.value(forKey: "placeholderLabel") as? UILabel {
+            // Empty or `nil` strings cause placeholder label to be hidden by the search bar
+            searchBar.placeholder = " "
+
+            // Create our own placeholder label
+            let placeholderLabel = UILabel(frame: .zero)
+
+            placeholderLabel.text = "Search for a username"
+            placeholderLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+            placeholderLabel.textColor = .white
+
+            systemPlaceholderLabel.addSubview(placeholderLabel)
+
+            // Layout label to be a "new" placeholder
+            placeholderLabel.leadingAnchor.constraint(equalTo: systemPlaceholderLabel.leadingAnchor).isActive = true
+            placeholderLabel.topAnchor.constraint(equalTo: systemPlaceholderLabel.topAnchor).isActive = true
+            placeholderLabel.bottomAnchor.constraint(equalTo: systemPlaceholderLabel.bottomAnchor).isActive = true
+            placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+            placeholderLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        } else {
+            searchBar.placeholder = ""
+        }
+        
         navigationItem.searchController = searchController
     }
     
