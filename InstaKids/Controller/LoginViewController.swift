@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
             //Set the login view controller as the delegate
             authUI.delegate = self
             authUI.providers = [FUIEmailAuth()]
+            authUI.customStringsBundle = Bundle.main
             
             //Create a firebase auth pre build UI View Controller
             let authViewController = authUI.authViewController()

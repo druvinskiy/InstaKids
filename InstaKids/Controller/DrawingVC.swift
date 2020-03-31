@@ -31,6 +31,7 @@ class DrawingVC: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.sketch = sketch
+        self.hidesBottomBarWhenPushed = true
     }
     
     override func viewDidLoad() {
@@ -156,6 +157,7 @@ class DrawingVC: UIViewController {
             
             self.saveButton.isEnabled = false
             self.didCreateDrawing()
+            self.hidesBottomBarWhenPushed = false
             
         }
     }

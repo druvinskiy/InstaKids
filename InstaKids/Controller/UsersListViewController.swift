@@ -36,8 +36,8 @@ class UsersListViewController: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Settings"
+        self.navigationItem.title = "Follow Someone"
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func configureCollectionView() {

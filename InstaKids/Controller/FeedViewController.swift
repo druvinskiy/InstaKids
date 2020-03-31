@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +34,11 @@ class FeedViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.hidesBottomBarWhenPushed = false
+    }
+    
     fileprivate func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -44,7 +50,6 @@ class FeedViewController: UIViewController {
     
     @objc func addDrawing() {
         let drawingVC = DrawingVC(sketch: nil)
-        drawingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(drawingVC, animated: true)
     }
     
@@ -77,7 +82,7 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.popViewController(animated: true)
         }
         
-        drawingVC.hidesBottomBarWhenPushed = true
+        //drawingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(drawingVC, animated: true)
     }
 }
@@ -94,16 +99,27 @@ extension FeedViewController: UITabBarControllerDelegate {
                 //tabBarController.selectedIndex = 0
                 //navigationController.popViewController(animated: true)
                 navigationController.popViewController(animated: true) {
+                    self.tabBarController?.selectedIndex = 0
                 }
-                
-                self.tabBarController?.selectedIndex = 0
             }
             
-            drawingVC.hidesBottomBarWhenPushed = true
+            //drawingVC.hidesBottomBarWhenPushed = true
             
             navigationController.pushViewController(viewController: drawingVC, animated: true, completion: {
             })
             
+        } else if title == "Settings" {
+            let authenticationController = AuthenticationController()
+            authenticationController.modalPresentationStyle = .fullScreen
+            
+            authenticationController.didFinishAuthenticating = { isAuthenticated in
+                
+                if !isAuthenticated {
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+            
+            present(authenticationController, animated: true)
         }
     }
     

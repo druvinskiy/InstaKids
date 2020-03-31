@@ -12,7 +12,7 @@ class UserCell: UICollectionViewCell {
     static let reuseID = "UserCell"
     
     let avatarImageView = IKImageView(frame: .zero)
-    let usernameLabel = GFTitleLabel(textAlignment: .center, fontSize: 16)
+    let usernameLabel = IKTitleLabel(textAlignment: .center, fontSize: 16, textColor: .label)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
