@@ -17,13 +17,6 @@ class UserService {
         
         let dbRef = Database.database().reference()
         
-//        dbRef.queryOrdered(byChild: "following")
-//            .queryEqual(toValue: true)
-//            .observeSingleEvent(of: .value) { (snapshot) in
-//                <#code#>
-//        }
-        
-        
         dbRef.child("users").observeSingleEvent(of: .value) { (snapshot) in
             
             var retrievedUsers = [SketchUser]()
@@ -35,8 +28,9 @@ class UserService {
                 for snap in snapshots {
                     
                     let user = SketchUser(snapshot: snap)
+                    let currentUser = LocalStorageService.loadCurrentUser()
                     
-                    if user != nil {
+                    if user != nil, user != currentUser {
                         retrievedUsers.insert(user!, at: 0)
                     }
                 }
@@ -100,7 +94,7 @@ class UserService {
                     }
                     else {
                         //Create a user and pass it back
-                        let u = SketchUser(userId: userId, username: username)
+                        let u = SketchUser(userId: userId, username: username, following: nil)
                         completion(u)
                     }
                 }
@@ -128,12 +122,20 @@ class UserService {
     }
     
     static func follow(_ followUserId: String) {
-        let currentUserid = Auth.auth().currentUser!.uid
+        guard var currentUser = LocalStorageService.loadCurrentUser() else { return }
+        
+        let currentUserid = currentUser.userId!
         
         let dbRef = Database.database().reference().child("users").child(currentUserid).child("following")
         
         let data = [followUserId : true]
         
-        dbRef.updateChildValues(data)
+        dbRef.updateChildValues(data) { (error, ref) in
+            
+            if error == nil {
+                currentUser.following.append(followUserId)
+                LocalStorageService.saveCurrentUser(user: currentUser)
+            }
+        }
     }
 }

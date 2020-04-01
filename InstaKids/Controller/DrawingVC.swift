@@ -16,21 +16,27 @@ protocol DrawingVCDelegate {
 
 class DrawingVC: UIViewController {
     
-    var sketch: Sketch?
-    var canvasView: PKCanvasView!
-    //var creatingProfileDrawing = false
     var createProfileDrawing: ((UIImage) -> Void)?
-    //var delegate: DrawingVCDelegate?
     var done: (() -> Void)?
+    
+    let drawingViewModel = DrawingViewModel()
     
     fileprivate let saveHUD = JGProgressHUD(style: .dark)
     
-    let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+    let saveButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+        button.isEnabled = false
+        return button
+    }()
+    
+
+    let undoItem = UIBarButtonItem(title: "Undo", style: .plain, target: self, action: #selector(undo))
+    let redoItem = UIBarButtonItem(title: "Redo", style: .plain, target: self, action: #selector(redo))
     
     init(sketch: Sketch?) {
         super.init(nibName: nil, bundle: nil)
         
-        self.sketch = sketch
+        drawingViewModel.sketch = sketch
         self.hidesBottomBarWhenPushed = true
     }
     
@@ -44,21 +50,11 @@ class DrawingVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         
+        setupBindables()
+        
         let canvasView = PKCanvasView(frame: view.bounds)
-        self.canvasView = canvasView
-        canvasView.allowsFingerDrawing = true
+        drawingViewModel.canvasView = canvasView
         view.addSubview(canvasView)
-        
-        if let sketch = sketch {
-            SketchService.downloadData(from: sketch.drawingUrl!) { (data) in
-                self.canvasView.drawing = try! PKDrawing(data: data)
-                canvasView.delegate = self
-                self.saveButton.isEnabled = false
-            }
-        }
-        
-        canvasView.delegate = self
-        saveButton.isEnabled = false
         
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(canvasView)
@@ -70,12 +66,26 @@ class DrawingVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    fileprivate func setupBindables() {
+        
+        
+        drawingViewModel.bindableCanSave.bind { (canSave) in
+            guard let canSave = canSave else { return }
+            self.saveButton.isEnabled = canSave
+        }
+        
+        drawingViewModel.bindableCanEdit.bind { (canEdit) in
+            guard let canEdit = canEdit else { return }
+
+            self.saveButton.isEnabled = canEdit
+            self.toggleRightBarButtonItems(color: .clear)
+
+            if !canEdit { self.drawingViewModel.canvasView.resignFirstResponder() }
+        }
+    }
+    
     func setNavigationBar() {
         navigationItem.rightBarButtonItems = []
-        
-        let undoItem = UIBarButtonItem(title: "Undo", style: .plain, target: self, action: #selector(undo))
-        
-        let redoItem = UIBarButtonItem(title: "Redo", style: .plain, target: self, action: #selector(redo))
         
         if createProfileDrawing == nil {
             navigationItem.rightBarButtonItems?.append(saveButton)
@@ -83,8 +93,6 @@ class DrawingVC: UIViewController {
         
         navigationItem.rightBarButtonItems?.append(undoItem)
         navigationItem.rightBarButtonItems?.append(redoItem)
-        
-        //navigationItem.leftItemsSupplementBackButton = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,9 +113,9 @@ class DrawingVC: UIViewController {
     }
     
     func createImage() -> UIImage {
-        let drawing = canvasView.drawing
-        let image = drawing.image(from: canvasView.frame, scale: 3.0)
-        let imageWithBackgroundColor = image.withBackground(color: createProfileDrawing != nil ? UIColor.offWhite : .white)
+        let drawing =  drawingViewModel.canvasView.drawing
+        let image = drawing.image(from: drawingViewModel.canvasView.frame, scale: 3.0)
+        let imageWithBackgroundColor = image.withBackground(color: .white)
         
         return imageWithBackgroundColor
     }
@@ -115,9 +123,9 @@ class DrawingVC: UIViewController {
     func setupToolPicker() {
         if let window = self.parent?.view.window,
             let toolPicker = PKToolPicker.shared(for: window) {
-            toolPicker.setVisible(true, forFirstResponder: canvasView)
-            toolPicker.addObserver(canvasView)
-            canvasView.becomeFirstResponder()
+            toolPicker.setVisible(true, forFirstResponder: drawingViewModel.canvasView)
+            toolPicker.addObserver(drawingViewModel.canvasView)
+            drawingViewModel.canvasView.becomeFirstResponder()
             toolPicker.addObserver(self)
             updateTools(toolPicker)
         }
@@ -136,35 +144,28 @@ class DrawingVC: UIViewController {
         saveHUD.show(in: self.view)
         
         view.isUserInteractionEnabled = false
-        navigationController?.navigationBar.isUserInteractionEnabled = false
-        navigationController?.navigationBar.tintColor = UIColor.clear
+        toggleRightBarButtonItems(color: .clear)
         
-        navigationItem.rightBarButtonItems?.forEach({ (button) in
-            button.isEnabled = false
-        })
-        
-        SketchService.saveSketch(drawing: canvasView.drawing, thumbnailImage: createImage(), sketchId: sketch?.sketchId) { (sketch) in
-            self.sketch = sketch
+        drawingViewModel.saveSketch(and: createImage()) {
             self.saveHUD.dismiss(animated: true)
-            
             self.view.isUserInteractionEnabled = true
-            self.navigationController?.navigationBar.isUserInteractionEnabled = true
-            self.navigationController?.navigationBar.tintColor = .white
+            self.toggleRightBarButtonItems(color: .white)
             
-            self.navigationItem.rightBarButtonItems?.forEach({ (button) in
-                button.isEnabled = true
-            })
-            
-            self.saveButton.isEnabled = false
             self.didCreateDrawing()
             self.hidesBottomBarWhenPushed = false
-            
         }
     }
     
     func didCreateDrawing() {
-        //self.delegate?.didCreateDrawing()
         done?()
+    }
+    
+    func toggleRightBarButtonItems(color: UIColor) {
+        navigationController?.navigationBar.isUserInteractionEnabled.toggle()
+        navigationController?.navigationBar.tintColor = color
+        
+        undoItem.isEnabled.toggle()
+        redoItem.isEnabled.toggle()
     }
     
     required init?(coder: NSCoder) {
@@ -205,8 +206,9 @@ extension DrawingVC: PKToolPickerObserver {
     }
 }
 
-extension DrawingVC: PKCanvasViewDelegate {
-    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-        saveButton.isEnabled = true
-    }
-}
+//extension DrawingVC: PKCanvasViewDelegate {
+//
+//    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+//        saveButton.isEnabled = true
+//    }
+//}

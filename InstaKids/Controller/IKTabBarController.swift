@@ -1,5 +1,5 @@
 //
-//  UITabBarControllerExtension.swift
+//  IKTabBarController.swift
 //  InstaKids
 //
 //  Created by David Ruvinskiy on 3/24/20.
@@ -8,14 +8,21 @@
 
 import UIKit
 
+enum ItemTitle: String {
+    case myDrawings = "My Drawings"
+    case newDrawing = "New Drawing"
+    case feed = "Feed"
+    case follow = "Follow"
+}
+
 class IKTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = #colorLiteral(red: 0.9334495664, green: 0.3899522722, blue: 0.2985906601, alpha: 1)
         
-        let feedVC = createFeedVC(title: "Feed", image: #imageLiteral(resourceName: "FeedIcon"))
-        let myDrawingsVC = createFeedVC(title: "My Drawings", image: #imageLiteral(resourceName: "UserIcon"))
+        let feedVC = createFeedVC(title: ItemTitle.feed.rawValue, image: #imageLiteral(resourceName: "FeedIcon"))
+        let myDrawingsVC = createFeedVC(title: ItemTitle.myDrawings.rawValue, image: #imageLiteral(resourceName: "UserIcon"))
         let settingsVC = createSettingsVC()
         let drawingVC = createDrawingVC()
         
@@ -25,7 +32,7 @@ class IKTabBarController: UITabBarController {
     func createDrawingVC() -> UINavigationController {
         let drawingVCHelper = UIViewController()
         drawingVCHelper.view.backgroundColor = .white
-        drawingVCHelper.tabBarItem = UITabBarItem(title: "New Drawing", image: #imageLiteral(resourceName: "DrawingIcon"), selectedImage: nil)
+        drawingVCHelper.tabBarItem = UITabBarItem(title: ItemTitle.newDrawing.rawValue, image: #imageLiteral(resourceName: "DrawingIcon"), selectedImage: nil)
         let navigationController = UINavigationController(rootViewController: drawingVCHelper)
         configure(navigationController)
         //navigationController.modalPresentationStyle = .overFullScreen
@@ -35,7 +42,7 @@ class IKTabBarController: UITabBarController {
     
     func createSettingsVC() -> UINavigationController {
         let userVC = UsersListViewController()
-        userVC.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "SettingsIcon"), selectedImage: nil)
+        userVC.tabBarItem = UITabBarItem(title: ItemTitle.follow.rawValue, image: #imageLiteral(resourceName: "FollowIcon"), selectedImage: nil)
         
         let navigationController = UINavigationController(rootViewController: userVC)
         configure(navigationController)

@@ -10,12 +10,13 @@ import UIKit
 import FirebaseAuth
 
 class FeedViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     var sketches = [Sketch]()
+    var isFeed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         configureTabBar()
         setNavigationBar()
         
@@ -25,12 +26,8 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        SketchService.getSketches { (sketches) in
-            self.sketches = sketches
-            self.tableView.reloadData()
-        }
+        configureTableView()
         
-        self.tabBarController?.navigationItem.title = "InstaKids"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -42,6 +39,27 @@ class FeedViewController: UIViewController {
     fileprivate func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if let currentUser = LocalStorageService.loadCurrentUser(),
+            let title = tabBarController?.tabBar.selectedItem?.title {
+            
+            isFeed = title == ItemTitle.feed.rawValue
+            
+            let filter: ((Sketch) -> Bool) = isFeed
+                ? {currentUser.following.contains($0.byId!)}
+                : {currentUser.userId! == ($0.byId!)}
+            
+            self.navigationItem.title = isFeed
+                ? "InstaKids"
+                : currentUser.username
+            
+            SketchService.getFilteredSketches(filter: filter) { (sketches) in
+                DispatchQueue.main.async {
+                    self.sketches = Array(sketches)
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     fileprivate func configureTabBar() {
@@ -67,10 +85,12 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.feedSketchTableCellId, for: indexPath) as! SketchCell
         
         let sketch = sketches[indexPath.row]
-        cell.set(with: sketch)
+        cell.set(with: sketch, isFeed)
         
         return cell
     }
@@ -91,7 +111,7 @@ extension FeedViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let title = tabBarController.tabBar.selectedItem?.title
         
-        if title == "New Drawing", let navigationController = viewController as? UINavigationController {
+        if title == ItemTitle.newDrawing.rawValue, let navigationController = viewController as? UINavigationController {
             
             let drawingVC = DrawingVC(sketch: nil)
             
@@ -108,7 +128,7 @@ extension FeedViewController: UITabBarControllerDelegate {
             navigationController.pushViewController(viewController: drawingVC, animated: true, completion: {
             })
             
-        } else if title == "Settings" {
+        } else if title == ItemTitle.follow.rawValue {
             let authenticationController = AuthenticationController()
             authenticationController.modalPresentationStyle = .fullScreen
             
@@ -119,21 +139,7 @@ extension FeedViewController: UITabBarControllerDelegate {
                 }
             }
             
-            present(authenticationController, animated: true)
+            //present(authenticationController, animated: true)
         }
     }
-    
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-//        if tabBarController.selectedIndex == 1 {
-//            return false
-//        }
-
-        return true
-    }
 }
-
-//extension FeedViewController: DrawingVCDelegate {
-//    func didCreateDrawing() {
-//        tabBarController?.selectedIndex = 0
-//    }
-//}

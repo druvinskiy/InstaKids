@@ -17,7 +17,7 @@ import PencilKit
 
 class SketchService {
     
-    static func getSketches(completion: @escaping ([Sketch]) -> Void) -> Void {
+    static func getSketches(completion: @escaping ([Sketch]) -> Void) {
         
         //Getting a reference to the database
         let dbRef = Database.database().reference()
@@ -47,6 +47,16 @@ class SketchService {
             
             //After parsing the snapshots, call the completion closure
             completion(retrievedSketches)
+        }
+    }
+    
+    static func getFilteredSketches(filter: @escaping ((Sketch) -> Bool), completion: @escaping ([Sketch]) -> Void) {
+        
+        getSketches { (sketches) in
+            
+            let filteredSketches = sketches.filter(filter)
+            
+            completion(filteredSketches)
         }
     }
     

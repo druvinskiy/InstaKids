@@ -44,9 +44,14 @@ struct SketchUser: Hashable {
         }
     }
     
-    init(userId: String, username: String) {
+    init(userId: String, username: String, following: [String]?) {
         self.userId = userId
         self.username = username
+        self.following = following ?? []
+    }
+    
+    static func == (lhs: SketchUser, rhs: SketchUser) -> Bool {
+        lhs.userId == rhs.userId
     }
 }
 

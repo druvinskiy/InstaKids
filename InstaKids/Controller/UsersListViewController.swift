@@ -126,12 +126,15 @@ extension UsersListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredUsers : users
-        let follower = activeArray[indexPath.item]
+        let user = activeArray[indexPath.item]
         
-//        let destVC = UserInfoVC()
-//        destVC.username = follower.login
-//        let navController = UINavigationController(rootViewController: destVC)
-//        present(navController, animated: true)
+        let title = "Follow \(user.username!)?"
+        let message = "Your child will be able to see all drawings created by \(user.username!)."
+        let action = {
+            UserService.follow(user.userId!)
+        }
+        
+        presentIKAlertOnMainThread(title: title, message: message, positiveButtonTitle: nil, positiveButtonAction: action, negativeButtonTitle: nil)
     }
     
     func getUsers() {

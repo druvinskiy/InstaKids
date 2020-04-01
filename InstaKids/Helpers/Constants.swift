@@ -25,5 +25,6 @@ struct Constants {
         
         static let storedUsername = "storedUsername"
         static let storedUserId = "storedUserId"
+        static let storedFollowing = "storedFollowing"
     }
 }

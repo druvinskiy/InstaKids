@@ -1,14 +1,14 @@
 //
-//  IKTitleLabel.swift
+//  IKBodyLabel.swift
 //  InstaKids
 //
-//  Created by David Ruvinskiy on 3/22/20.
+//  Created by David Ruvinskiy on 3/30/20.
 //  Copyright © 2020 David Ruvinskiy. All rights reserved.
 //
 
 import UIKit
 
-class IKTitleLabel: UILabel {
+class IKBodyLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,20 +19,18 @@ class IKTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat, textColor: UIColor = .label) {
+    init(textAlignment: NSTextAlignment) {
         super.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        self.textColor = textColor
         configure()
     }
     
     private func configure() {
-        //textColor = .label
+        textColor = .secondaryLabel
+        font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.9
-        lineBreakMode = .byTruncatingTail
+        minimumScaleFactor = 0.75
+        lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
-

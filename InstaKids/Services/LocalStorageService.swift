@@ -17,6 +17,7 @@ class LocalStorageService {
         
         defaults.setValue(user.userId, forKey: Constants.localStorage.storedUserId)
         defaults.setValue(user.username, forKey: Constants.localStorage.storedUsername)
+        defaults.set(user.following, forKey: Constants.localStorage.storedFollowing)
     }
     
     static func loadCurrentUser() -> SketchUser? {
@@ -26,14 +27,15 @@ class LocalStorageService {
         
         let userName = defaults.value(forKey: Constants.localStorage.storedUsername) as? String
         let userId = defaults.value(forKey: Constants.localStorage.storedUserId) as? String
+        let following = defaults.value(forKey: Constants.localStorage.storedFollowing) as? [String]
         
         //Couldn't get a user, return nil
-        guard userName != nil || userId != nil else {
+        guard userName != nil || userId != nil || following != nil else {
             return nil
         }
         
         //Return the user
-        let u = SketchUser(userId: userId!, username: userName!)
+        let u = SketchUser(userId: userId!, username: userName!, following: following)
         return u
     }
     

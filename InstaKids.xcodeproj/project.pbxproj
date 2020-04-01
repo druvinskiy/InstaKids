@@ -24,6 +24,11 @@
 		B8AE008824328228005F2F4C /* FirebaseAuthUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8AE003324328227005F2F4C /* FirebaseAuthUI.strings */; };
 		B8AE008A2432ACAA005F2F4C /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE00892432ACAA005F2F4C /* AuthenticationViewModel.swift */; };
 		B8AE008C2432B269005F2F4C /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE008B2432B269005F2F4C /* AuthenticationController.swift */; };
+		B8AE008E2432CFB2005F2F4C /* IKAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE008D2432CFB2005F2F4C /* IKAlertVC.swift */; };
+		B8AE00902432D05B005F2F4C /* IKBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE008F2432D05B005F2F4C /* IKBodyLabel.swift */; };
+		B8AE00922432D0C7005F2F4C /* IKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE00912432D0C7005F2F4C /* IKButton.swift */; };
+		B8AE00942432F44D005F2F4C /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE00932432F44D005F2F4C /* UIViewControllerExtension.swift */; };
+		B8AE009624344E11005F2F4C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE009524344E11005F2F4C /* DrawingViewModel.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C179E3242C1E30004F0875 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E2242C1E30004F0875 /* CardViewModel.swift */; };
 		B8C179E5242C1E70004F0875 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E4242C1E70004F0875 /* CardView.swift */; };
@@ -36,7 +41,7 @@
 		B8DEA759242801BC008FC0D2 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */; };
 		B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA75A242801EA008FC0D2 /* Bindable.swift */; };
 		B8DEA75F2429A8B3008FC0D2 /* DrawingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */; };
-		B8DEA763242A7E2B008FC0D2 /* UITabBarControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */; };
+		B8DEA763242A7E2B008FC0D2 /* IKTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DEA762242A7E2B008FC0D2 /* IKTabBarController.swift */; };
 		B8EC99AD241ED1B100C28356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AC241ED1B100C28356 /* AppDelegate.swift */; };
 		B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */; };
 		B8EC99B4241ED1B100C28356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8EC99B2241ED1B100C28356 /* Main.storyboard */; };
@@ -148,6 +153,11 @@
 		B8AE008724328227005F2F4C /* en-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-IN"; path = "en-IN.lproj/FirebaseAuthUI.strings"; sourceTree = "<group>"; };
 		B8AE00892432ACAA005F2F4C /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B8AE008B2432B269005F2F4C /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		B8AE008D2432CFB2005F2F4C /* IKAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKAlertVC.swift; sourceTree = "<group>"; };
+		B8AE008F2432D05B005F2F4C /* IKBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKBodyLabel.swift; sourceTree = "<group>"; };
+		B8AE00912432D0C7005F2F4C /* IKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKButton.swift; sourceTree = "<group>"; };
+		B8AE00932432F44D005F2F4C /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		B8AE009524344E11005F2F4C /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C179E2242C1E30004F0875 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B8C179E4242C1E70004F0875 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -160,7 +170,7 @@
 		B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		B8DEA75A242801EA008FC0D2 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingVC.swift; sourceTree = "<group>"; };
-		B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtension.swift; sourceTree = "<group>"; };
+		B8DEA762242A7E2B008FC0D2 /* IKTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKTabBarController.swift; sourceTree = "<group>"; };
 		B8EC99A9241ED1B100C28356 /* InstaKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EC99AC241ED1B100C28356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8EC99AE241ED1B100C28356 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +201,7 @@
 				A650B84B2421378F00F55712 /* UIImageExtension.swift */,
 				A68FD0E42421A6DB00C1DD35 /* UIColorExtension.swift */,
 				B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */,
+				B8AE00932432F44D005F2F4C /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 				B8DEA758242801BC008FC0D2 /* RegistrationViewModel.swift */,
 				B8C179E2242C1E30004F0875 /* CardViewModel.swift */,
 				B8AE00892432ACAA005F2F4C /* AuthenticationViewModel.swift */,
+				B8AE009524344E11005F2F4C /* DrawingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -291,6 +303,8 @@
 				B8DEA7542427E5E5008FC0D2 /* IKTitleLabel.swift */,
 				B8DEA7562427FFDA008FC0D2 /* IKTextField.swift */,
 				B8C179E4242C1E70004F0875 /* CardView.swift */,
+				B8AE008F2432D05B005F2F4C /* IKBodyLabel.swift */,
+				B8AE00912432D0C7005F2F4C /* IKButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,7 +312,7 @@
 		B8EC99C3241EDB0400C28356 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B8DEA762242A7E2B008FC0D2 /* UITabBarControllerExtension.swift */,
+				B8DEA762242A7E2B008FC0D2 /* IKTabBarController.swift */,
 				B8C86B0F241FF3F0002E3985 /* FeedViewController.swift */,
 				B8365FE92422A7930017F5A7 /* LoginViewController.swift */,
 				B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */,
@@ -306,6 +320,7 @@
 				B8DEA75E2429A8B2008FC0D2 /* DrawingVC.swift */,
 				B8C179E6242C21B4004F0875 /* UsersController.swift */,
 				B8AE008B2432B269005F2F4C /* AuthenticationController.swift */,
+				B8AE008D2432CFB2005F2F4C /* IKAlertVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -551,6 +566,7 @@
 				B8C179E7242C21B4004F0875 /* UsersController.swift in Sources */,
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
+				B8AE009624344E11005F2F4C /* DrawingViewModel.swift in Sources */,
 				B8AE003124317CE8005F2F4C /* UINavigationControllerExtension.swift in Sources */,
 				B8DEA75B242801EA008FC0D2 /* Bindable.swift in Sources */,
 				B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */,
@@ -558,9 +574,11 @@
 				B8AE008A2432ACAA005F2F4C /* AuthenticationViewModel.swift in Sources */,
 				B8FC17892427E041005B1E1E /* UIHelper.swift in Sources */,
 				B8DEA7512427E495008FC0D2 /* UserCell.swift in Sources */,
+				B8AE00942432F44D005F2F4C /* UIViewControllerExtension.swift in Sources */,
 				B8C179E3242C1E30004F0875 /* CardViewModel.swift in Sources */,
 				B8FC17872427D5FB005B1E1E /* UsersListViewController.swift in Sources */,
 				B8EC99AF241ED1B100C28356 /* SceneDelegate.swift in Sources */,
+				B8AE008E2432CFB2005F2F4C /* IKAlertVC.swift in Sources */,
 				A68FD0E52421A6DB00C1DD35 /* UIColorExtension.swift in Sources */,
 				B8DEA7552427E5E5008FC0D2 /* IKTitleLabel.swift in Sources */,
 				B8C86B10241FF3F0002E3985 /* FeedViewController.swift in Sources */,
@@ -571,12 +589,14 @@
 				B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */,
 				A650B84A242134D800F55712 /* PersistanceManager.swift in Sources */,
 				B8365FF32422ABDE0017F5A7 /* LocalStorageService.swift in Sources */,
-				B8DEA763242A7E2B008FC0D2 /* UITabBarControllerExtension.swift in Sources */,
+				B8DEA763242A7E2B008FC0D2 /* IKTabBarController.swift in Sources */,
+				B8AE00902432D05B005F2F4C /* IKBodyLabel.swift in Sources */,
 				B8DEA7572427FFDA008FC0D2 /* IKTextField.swift in Sources */,
 				B8365FEA2422A7930017F5A7 /* LoginViewController.swift in Sources */,
 				B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */,
 				B8DEA7532427E546008FC0D2 /* IKImageView.swift in Sources */,
 				A650B84C2421378F00F55712 /* UIImageExtension.swift in Sources */,
+				B8AE00922432D0C7005F2F4C /* IKButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
