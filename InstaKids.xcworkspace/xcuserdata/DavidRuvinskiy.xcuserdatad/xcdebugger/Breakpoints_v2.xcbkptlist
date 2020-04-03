@@ -87,81 +87,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E3CCF6FC-2FB1-4702-90F3-9EFEEF1A55D5"
+            uuid = "0D5179B7-0436-40AC-A98D-70B90A591834"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InstaKids/Controller/DrawingVC.swift"
+            filePath = "InstaKids/ViewModels/DrawingViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "setupBindables()"
-            landmarkType = "7">
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "count"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "03F74AE7-85D3-4276-A731-A3D51930C434"
+            uuid = "1FF07919-B11B-4BEA-9C6E-2D6737EE3EB2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InstaKids/Controller/DrawingVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "setupBindables()"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "updateUndoRedoUI()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9C0061EA-A748-4BB9-ACC1-3F539EDDF667"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InstaKids/Controller/DrawingVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "setupBindables()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9C0061EA-A748-4BB9-ACC1-3F539EDDF667 - 87b6a6ec6e68dee4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "InstaKids.DrawingVC.(setupBindables in _95DC2E3CD3A6D2EFE0CE7EEB407BA46E)() -&gt; ()"
-                  moduleName = "InstaKids"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DavidRuvinskiy/Desktop/InstaKids/InstaKids/Controller/DrawingVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "25">
-               </Location>
-               <Location
-                  uuid = "9C0061EA-A748-4BB9-ACC1-3F539EDDF667 - 57fcce0783b646d4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in InstaKids.DrawingVC.(setupBindables in _95DC2E3CD3A6D2EFE0CE7EEB407BA46E)() -&gt; ()"
-                  moduleName = "InstaKids"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DavidRuvinskiy/Desktop/InstaKids/InstaKids/Controller/DrawingVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

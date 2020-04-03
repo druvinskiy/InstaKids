@@ -146,18 +146,22 @@ class SketchService {
         }
     }
     
-    static func downloadData(from urlString: String, completion: @escaping (Data) -> Void) {
+    static func downloadData(from urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        
         guard let url = URL(string: urlString) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            //guard let self = self else { return }
-            if error != nil { return }
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
             guard let data = data else { return }
             
             DispatchQueue.main.async {
-                completion(data)
+                completion(.success(data))
             }
         }
         

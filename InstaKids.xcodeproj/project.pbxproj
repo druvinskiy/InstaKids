@@ -29,6 +29,7 @@
 		B8AE00922432D0C7005F2F4C /* IKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE00912432D0C7005F2F4C /* IKButton.swift */; };
 		B8AE00942432F44D005F2F4C /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE00932432F44D005F2F4C /* UIViewControllerExtension.swift */; };
 		B8AE009624344E11005F2F4C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE009524344E11005F2F4C /* DrawingViewModel.swift */; };
+		B8AE009824352FDE005F2F4C /* IKDrawingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE009724352FDE005F2F4C /* IKDrawingButton.swift */; };
 		B8BF80E1241FEF370003A9E6 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BF80E0241FEF370003A9E6 /* Sketch.swift */; };
 		B8C179E3242C1E30004F0875 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E2242C1E30004F0875 /* CardViewModel.swift */; };
 		B8C179E5242C1E70004F0875 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C179E4242C1E70004F0875 /* CardView.swift */; };
@@ -158,6 +159,7 @@
 		B8AE00912432D0C7005F2F4C /* IKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKButton.swift; sourceTree = "<group>"; };
 		B8AE00932432F44D005F2F4C /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B8AE009524344E11005F2F4C /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
+		B8AE009724352FDE005F2F4C /* IKDrawingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKDrawingButton.swift; sourceTree = "<group>"; };
 		B8BF80E0241FEF370003A9E6 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B8C179E2242C1E30004F0875 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B8C179E4242C1E70004F0875 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				B8C179E4242C1E70004F0875 /* CardView.swift */,
 				B8AE008F2432D05B005F2F4C /* IKBodyLabel.swift */,
 				B8AE00912432D0C7005F2F4C /* IKButton.swift */,
+				B8AE009724352FDE005F2F4C /* IKDrawingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				B8C179E5242C1E70004F0875 /* CardView.swift in Sources */,
 				B8C179E7242C21B4004F0875 /* UsersController.swift in Sources */,
 				B8365FEE2422A9340017F5A7 /* SketchUser.swift in Sources */,
+				B8AE009824352FDE005F2F4C /* IKDrawingButton.swift in Sources */,
 				B850C3EA24230420002D87E0 /* SketchService.swift in Sources */,
 				B8AE009624344E11005F2F4C /* DrawingViewModel.swift in Sources */,
 				B8AE003124317CE8005F2F4C /* UINavigationControllerExtension.swift in Sources */,
@@ -717,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -777,6 +782,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

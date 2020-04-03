@@ -28,9 +28,18 @@ class IKImageView: UIImageView {
     }
     
     func downloadImage(from urlString: String) {
-        SketchService.downloadData(from: urlString) { (data) in
-            guard let image = UIImage(data: data) else { return }
-            DispatchQueue.main.async { self.image = image }
+        SketchService.downloadData(from: urlString) { (result) in
+            
+            switch result {
+                
+            case .success(let data):
+                
+                guard let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async { self.image = image }
+                
+            case .failure(_):
+                break
+            }
         }
     }
 }

@@ -23,8 +23,16 @@ class SketchCell: UITableViewCell {
         
         guard let imageUrl = sketch.imageUrl else { return }
         
-        SketchService.downloadData(from: imageUrl) { (data) in
-            self.sketchImageView.image = UIImage(data: data)
+        SketchService.downloadData(from: imageUrl) { (result) in
+            
+            switch result {
+                
+            case .success(let data):
+                self.sketchImageView.image = UIImage(data: data)
+                
+            case .failure(_):
+                break
+            }
         }
     }
 

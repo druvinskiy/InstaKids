@@ -23,11 +23,11 @@ class CardView: UIView {
         didSet {
             let imageUrl = cardViewModel.imageUrl
             
-            SketchService.downloadData(from: imageUrl) { (data) in
-                if let image = UIImage(data: data) {
-                    self.imageView.image = image
-                }
-            }
+//            SketchService.downloadData(from: imageUrl) { (data) in
+//                if let image = UIImage(data: data) {
+//                    self.imageView.image = image
+//                }
+//            }
             
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment

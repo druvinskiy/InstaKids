@@ -11,59 +11,69 @@ import PencilKit
 
 class DrawingViewModel: NSObject {
     
-    var bindableCanSave = Bindable<Bool>()
-    var bindableCanEdit = Bindable<Bool>()
+    var saveShouldBeEnabled = Bindable<Bool>()
+            
+    var bindableIsSaving = Bindable<Bool>()
     
-    private var oldDrawing: PKDrawing?
+    var didDownloadDrawing = Bindable<PKDrawing>()
     
-    var sketch: Sketch? {
-        didSet {
-            if sketch != nil {
+    private var count: Int = 0 {
+        willSet {
+            if newValue != 0 {
+                saveShouldBeEnabled.value = true
+            } else {
+                saveShouldBeEnabled.value = false
+            }
+        }
+    }
+    
+    var sketch: Sketch! {
+        willSet {
+            
+            SketchService.downloadData(from: newValue.drawingUrl!) { (result) in
                 
-                SketchService.downloadData(from: sketch!.drawingUrl!) { (data) in
-                    let drawing = try! PKDrawing(data: data)
+                switch result {
                     
-                    self.canvasView.drawing = drawing
-                    self.oldDrawing = drawing
+                case .success(let data):
+                    
+                    do {
+                        
+                        let drawing = try PKDrawing(data: data)
+                        self.didDownloadDrawing.value = drawing
+                        
+                    } catch {
+                        
+                        self.didDownloadDrawing.value = nil
+                    }
+                    
+                case .failure(_):
+                    
+                    self.didDownloadDrawing.value = nil
                 }
+                
             }
             
-            checkCanEdit()
         }
     }
     
-    var canvasView: PKCanvasView! { didSet {
-        canvasView.allowsFingerDrawing = true
-        canvasView.delegate = self
-        }
+    func didPressUndo() {
+        count -= 1
     }
     
-    func checkCanSave() {
-        let canSave = !canvasView.drawing.bounds.isEmpty
-        bindableCanSave.value = canSave
+    func didPressRedo() {
+        count += 1
     }
     
-    func checkCanEdit() {
-        guard let currentUser = LocalStorageService.loadCurrentUser() else { return }
-        let userId = currentUser.userId!
+    func didEndUsingTool() {
+        count += 1
+    }
+    
+    func saveSketch(_ drawing: PKDrawing, and image: UIImage) {
+        bindableIsSaving.value = true
         
-        let canEdit = sketch?.byId == userId
-        
-        bindableCanEdit.value = canEdit
-    }
-    
-    func saveSketch(and image: UIImage, completion: @escaping (() -> Void)) {
-        SketchService.saveSketch(drawing: canvasView.drawing, thumbnailImage: image, sketchId: sketch?.sketchId) { (sketch) in
+        SketchService.saveSketch(drawing: drawing, thumbnailImage: image, sketchId: sketch?.sketchId) { (sketch) in
             
-            self.sketch = sketch
-            self.bindableCanSave.value?.toggle()
-            completion()
+            self.bindableIsSaving.value = false
         }
-    }
-}
-
-extension DrawingViewModel: PKCanvasViewDelegate {    
-    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-        checkCanSave()
     }
 }
