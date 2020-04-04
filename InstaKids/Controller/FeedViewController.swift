@@ -139,7 +139,6 @@ extension FeedViewController: UITabBarControllerDelegate {
                 }
             }
             
-            //present(authenticationController, animated: true)
         }
     }
 }

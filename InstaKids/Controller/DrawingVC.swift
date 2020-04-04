@@ -51,11 +51,21 @@ class DrawingVC: UIViewController {
         
         self.hidesBottomBarWhenPushed = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUndoRedoUI), name: .NSUndoManagerDidUndoChange, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUndoRedoUI), name: .NSUndoManagerDidRedoChange, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateUndoRedoUI), name: .NSUndoManagerDidOpenUndoGroup, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,15 +79,17 @@ class DrawingVC: UIViewController {
     
     fileprivate func setupBindables() {
         
-        drawingViewModel.saveShouldBeEnabled.bind { (saveEnabled) in
-            guard let saveEnabled = saveEnabled else { return }
+        drawingViewModel.saveShouldBeEnabled.bind { [weak self] (saveEnabled) in
+            guard let self = self,
+                let saveEnabled = saveEnabled else { return }
             
             self.saveButton.isEnabled = saveEnabled
         }
         
-        drawingViewModel.didDownloadDrawing.bind { (drawing) in
+        drawingViewModel.didDownloadDrawing.bind { [weak self] (drawing) in
             
-            if let drawing = drawing,
+            if let self = self,
+                let drawing = drawing,
                 let currentUser = LocalStorageService.loadCurrentUser() {
                 
                 self.canvasView.drawing = drawing
@@ -93,8 +105,9 @@ class DrawingVC: UIViewController {
             }
         }
         
-        drawingViewModel.bindableIsSaving.bind { (isSaving) in
-            guard let isSaving = isSaving else { return }
+        drawingViewModel.bindableIsSaving.bind { [weak self] (isSaving) in
+            guard let self = self,
+                let isSaving = isSaving else { return }
             
             if isSaving {
                 self.saveHUD.textLabel.text = "Saving"
@@ -176,7 +189,7 @@ class DrawingVC: UIViewController {
             
             drawingViewModel.didPressUndo()
             undoManager.undo()
-            updateUndoRedoUI()
+            //updateUndoRedoUI()
             
         }
     }
@@ -186,7 +199,7 @@ class DrawingVC: UIViewController {
             
             drawingViewModel.didPressRedo()
             undoManager.redo()
-            updateUndoRedoUI()
+            //updateUndoRedoUI()
         }
     }
     
@@ -247,6 +260,7 @@ extension DrawingVC: PKToolPickerObserver {
 extension DrawingVC: PKCanvasViewDelegate {
     
     func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
+        //updateUndoRedoUI()
         drawingViewModel.didEndUsingTool()
     }
 }
