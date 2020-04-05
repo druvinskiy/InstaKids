@@ -10,10 +10,10 @@ import UIKit
 
 extension UIViewController {
     
-    func presentIKAlertOnMainThread(title: String, message: String, positiveButtonTitle: String?, positiveButtonAction: @escaping (() -> Void), negativeButtonTitle: String?) {
+    func presentIKAlertOnMainThread(title: String, message: String, positiveButtonTitle: String?, positiveButtonAction: @escaping (() -> Void), negativeButtonTitle: String?, negativeButtonAction: (() -> Void)?) {
         
         DispatchQueue.main.async {
-            let alertVC = IKAlertVC(title: title, message: message, positiveButtonTitle: positiveButtonTitle, positiveButtonAction: positiveButtonAction, negativeButtonTitle: negativeButtonTitle)
+            let alertVC = IKAlertVC(title: title, message: message, positiveButtonTitle: positiveButtonTitle, positiveButtonAction: positiveButtonAction, negativeButtonTitle: negativeButtonTitle, negativeButtonAction: negativeButtonAction)
             
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve

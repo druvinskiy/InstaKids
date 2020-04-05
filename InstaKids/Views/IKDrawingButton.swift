@@ -24,14 +24,14 @@ class IKDrawingButton: UIBarButtonItem {
         }
     }
     
-    init(title: String, style: UIBarButtonItem.Style, target: Any, action: Selector) {
+    init(title: String, style: UIBarButtonItem.Style, target: Any, action: Selector, isHidden: Bool = true) {
         super.init()
         
         self.title = title
         self.style = style
         self.target = target as AnyObject
         self.action = action
-        self.isHidden = true
+        self.isHidden = isHidden
     }
     
     required init?(coder: NSCoder) {

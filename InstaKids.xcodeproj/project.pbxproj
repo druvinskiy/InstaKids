@@ -19,6 +19,7 @@
 		B8365FF32422ABDE0017F5A7 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8365FF22422ABDE0017F5A7 /* LocalStorageService.swift */; };
 		B850C3E82422D6D4002D87E0 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */; };
 		B850C3EA24230420002D87E0 /* SketchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850C3E924230420002D87E0 /* SketchService.swift */; };
+		B8516C1624396FEE00B2074B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8516C1524396FEE00B2074B /* Colors.xcassets */; };
 		B85C65792421BCA500EACDD7 /* SketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C65782421BCA500EACDD7 /* SketchCell.swift */; };
 		B8AE003124317CE8005F2F4C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */; };
 		B8AE008824328228005F2F4C /* FirebaseAuthUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8AE003324328227005F2F4C /* FirebaseAuthUI.strings */; };
@@ -66,6 +67,7 @@
 		B8365FF22422ABDE0017F5A7 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		B850C3E72422D6D4002D87E0 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		B850C3E924230420002D87E0 /* SketchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchService.swift; sourceTree = "<group>"; };
+		B8516C1524396FEE00B2074B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B85C65782421BCA500EACDD7 /* SketchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchCell.swift; sourceTree = "<group>"; };
 		B8AE003024317CE8005F2F4C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		B8AE003424328227005F2F4C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FirebaseAuthUI.strings; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				B8EC99C2241EDABA00C28356 /* Views */,
 				B8EC99B2241ED1B100C28356 /* Main.storyboard */,
 				B8EC99B5241ED1B700C28356 /* Assets.xcassets */,
+				B8516C1524396FEE00B2074B /* Colors.xcassets */,
 				B8EC99B7241ED1B700C28356 /* LaunchScreen.storyboard */,
 				B8EC99BA241ED1B700C28356 /* Info.plist */,
 				B8365FE6242296830017F5A7 /* GoogleService-Info.plist */,
@@ -493,6 +496,7 @@
 				B8AE008824328228005F2F4C /* FirebaseAuthUI.strings in Resources */,
 				B8EC99B9241ED1B700C28356 /* LaunchScreen.storyboard in Resources */,
 				B8365FE7242296830017F5A7 /* GoogleService-Info.plist in Resources */,
+				B8516C1624396FEE00B2074B /* Colors.xcassets in Resources */,
 				B8EC99B6241ED1B700C28356 /* Assets.xcassets in Resources */,
 				B8EC99B4241ED1B100C28356 /* Main.storyboard in Resources */,
 			);

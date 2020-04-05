@@ -19,7 +19,7 @@ class IKTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = #colorLiteral(red: 0.9334495664, green: 0.3899522722, blue: 0.2985906601, alpha: 1)
+        UITabBar.appearance().tintColor = Theme.mainColor
         
         let feedVC = createFeedVC(title: ItemTitle.feed.rawValue, image: #imageLiteral(resourceName: "FeedIcon"))
         let myDrawingsVC = createFeedVC(title: ItemTitle.myDrawings.rawValue, image: #imageLiteral(resourceName: "UserIcon"))
@@ -69,7 +69,7 @@ class IKTabBarController: UITabBarController {
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.backgroundColor = #colorLiteral(red: 0.9334495664, green: 0.3899522722, blue: 0.2985906601, alpha: 1)
+            navBarAppearance.backgroundColor = Theme.mainColor
             navigationController.navigationBar.standardAppearance = navBarAppearance
             navigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
         }

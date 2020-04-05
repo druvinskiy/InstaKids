@@ -67,7 +67,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc func addDrawing() {
-        let drawingVC = DrawingVC(sketch: nil)
+        let drawingVC = DrawingVC(sketch: nil, createProfileDrawing: nil)
         navigationController?.pushViewController(drawingVC, animated: true)
     }
     
@@ -96,7 +96,7 @@ extension FeedViewController:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let drawingVC = DrawingVC(sketch: sketches[indexPath.row])
+        let drawingVC = DrawingVC(sketch: sketches[indexPath.row], createProfileDrawing: nil)
         
         drawingVC.done = {
             self.navigationController?.popViewController(animated: true)
@@ -113,7 +113,7 @@ extension FeedViewController: UITabBarControllerDelegate {
         
         if title == ItemTitle.newDrawing.rawValue, let navigationController = viewController as? UINavigationController {
             
-            let drawingVC = DrawingVC(sketch: nil)
+            let drawingVC = DrawingVC(sketch: nil, createProfileDrawing: nil)
             
             drawingVC.done = {
                 //tabBarController.selectedIndex = 0
@@ -138,6 +138,8 @@ extension FeedViewController: UITabBarControllerDelegate {
                     self.tabBarController?.selectedIndex = 0
                 }
             }
+            
+            present(authenticationController, animated: true, completion: nil)
             
         }
     }

@@ -18,15 +18,16 @@ class IKAlertVC: UIViewController {
     var positiveButtonTitle: String?
     var positiveButtonAction: (() -> Void)?
     
-    let negativeButton = IKButton(backgroundColor: #colorLiteral(red: 0.9334495664, green: 0.3899522722, blue: 0.2985906601, alpha: 1), title: "Ok")
+    let negativeButton = IKButton(backgroundColor: Theme.mainColor, title: "Ok")
     var negativeButtonTitle: String?
+    var negativeButtonAction: (() -> Void)?
     
     var alertTitle: String?
     var message: String?
     
     let padding: CGFloat = 20
     
-    init(title: String, message: String, positiveButtonTitle: String?, positiveButtonAction: @escaping (() -> Void), negativeButtonTitle: String?) {
+    init(title: String, message: String, positiveButtonTitle: String?, positiveButtonAction: @escaping (() -> Void), negativeButtonTitle: String?, negativeButtonAction: (() -> Void)?) {
         super.init(nibName: nil, bundle: nil)
         alertTitle = title
         self.message = message
@@ -35,6 +36,7 @@ class IKAlertVC: UIViewController {
         self.positiveButtonAction = positiveButtonAction
         
         self.negativeButtonTitle = negativeButtonTitle
+        self.negativeButtonAction = negativeButtonAction
     }
     
     required init?(coder: NSCoder) {
@@ -81,8 +83,8 @@ class IKAlertVC: UIViewController {
     
     func configureActionButtons() {
         let stackView = UIStackView(arrangedSubviews: [
-            positiveButton,
-            negativeButton
+            negativeButton,
+            positiveButton
         ])
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +99,7 @@ class IKAlertVC: UIViewController {
         positiveButton.addTarget(self, action: #selector(act), for: .touchUpInside)
         
         negativeButton.setTitle(negativeButtonTitle ?? "Cancel", for: .normal)
-        negativeButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        negativeButton.addTarget(self, action: #selector(negAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
@@ -120,7 +122,11 @@ class IKAlertVC: UIViewController {
         ])
     }
     
-    @objc func dismissVC() {
+    @objc func negAction() {
+        if let negAction = negativeButtonAction {
+            negAction()
+        }
+        
         dismiss(animated: true)
     }
     

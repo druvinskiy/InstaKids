@@ -6,7 +6,7 @@
 //  Copyright © 2020 David Ruvinskiy. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Constants {
 
@@ -27,4 +27,9 @@ struct Constants {
         static let storedUserId = "storedUserId"
         static let storedFollowing = "storedFollowing"
     }
+}
+
+class Theme {
+    
+    static let mainColor = UIColor(named: "mainColor")!
 }

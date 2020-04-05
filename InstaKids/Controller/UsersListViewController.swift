@@ -134,7 +134,7 @@ extension UsersListViewController: UICollectionViewDelegate {
             UserService.follow(user.userId!)
         }
         
-        presentIKAlertOnMainThread(title: title, message: message, positiveButtonTitle: nil, positiveButtonAction: action, negativeButtonTitle: nil)
+        presentIKAlertOnMainThread(title: title, message: message, positiveButtonTitle: nil, positiveButtonAction: action, negativeButtonTitle: nil, negativeButtonAction: nil)
     }
     
     func getUsers() {
@@ -149,7 +149,12 @@ extension UsersListViewController: UICollectionViewDelegate {
 extension UsersListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            updateData(on: users)
+            isSearching = false
+            return
+        }
+        
         isSearching = true
         filteredUsers = users.filter { $0.username!.lowercased().contains(filter.lowercased() ) }
         updateData(on: filteredUsers)

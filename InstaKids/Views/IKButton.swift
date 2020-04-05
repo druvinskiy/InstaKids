@@ -17,20 +17,24 @@ class IKButton: UIButton {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        //fatalError("init(coder:) has not been implemented")
+        
+        configure()
     }
     
     init(backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         configure()
     }
     
     private func configure() {
         layer.cornerRadius = 10
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -18,7 +18,9 @@ class CreateProfileViewController: UIViewController {
     // UI Components
     let createProfileDrawing: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Draw a picture of yourself", for: .normal)
+        button.setTitle("Tap here to draw a\n picture of yourself! 😀", for: .normal)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
@@ -31,9 +33,9 @@ class CreateProfileViewController: UIViewController {
     }()
     
     @objc func handleCreateProfileDrawing() {
-        let drawingVC = DrawingVC(sketch: nil)
-        
-        drawingVC.createProfileDrawing = { image in
+        let drawingVC = DrawingVC(sketch: nil) { [weak self] image in
+            guard let self = self else { return }
+            
             self.registrationViewModel.bindableImage.value = image
             self.registrationViewModel.checkFormValidity()
         }

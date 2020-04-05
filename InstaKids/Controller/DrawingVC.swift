@@ -26,6 +26,7 @@ class DrawingVC: UIViewController {
     let saveButton = IKDrawingButton(title: "Save", style: .done, target: self, action: #selector(save))
     let undoItem = IKDrawingButton(title: "Undo", style: .plain, target: self, action: #selector(undo))
     let redoItem = IKDrawingButton(title: "Redo", style: .plain, target: self, action: #selector(redo))
+    lazy var backButton = IKDrawingButton(title: createProfileDrawing == nil ? "Back" : "Save", style: .done, target: self, action: #selector(didPressBack), isHidden: false)
     
     lazy var canvasView: PKCanvasView = {
         let cv = PKCanvasView(frame: view.bounds)
@@ -36,8 +37,10 @@ class DrawingVC: UIViewController {
         return cv
     }()
     
-    init(sketch: Sketch?) {
+    init(sketch: Sketch?, createProfileDrawing: ((UIImage) -> Void)?) {
         super.init(nibName: nil, bundle: nil)
+        
+        self.createProfileDrawing = createProfileDrawing
         
         setNavigationBar()
         setupBindables()
@@ -131,10 +134,11 @@ class DrawingVC: UIViewController {
     }
     
     func rightBarButtonItems(shouldBeVisible: Bool, backButtonShouldBeVisible: Bool = true) {
-        guard let rightBarButtonItems = navigationItem.rightBarButtonItems as? [IKDrawingButton] else { return }
+        guard let rightBarButtonItems = navigationItem.rightBarButtonItems as? [IKDrawingButton], let leftBarButtonItem = navigationItem.leftBarButtonItem as? IKDrawingButton else { return }
         rightBarButtonItems.forEach({ $0.isHidden = !shouldBeVisible })
         //rightBarButtonItems.forEach({ $0.isEnabled = !$0.isHidden })
-        self.navigationItem.setHidesBackButton(!backButtonShouldBeVisible, animated: false)
+        //self.navigationItem.setHidesBackButton(!backButtonShouldBeVisible, animated: false)
+        leftBarButtonItem.isHidden = !backButtonShouldBeVisible
     }
     
     func setNavigationBar() {
@@ -146,6 +150,8 @@ class DrawingVC: UIViewController {
         
         navigationItem.rightBarButtonItems?.append(undoItem)
         navigationItem.rightBarButtonItems?.append(redoItem)
+        
+        navigationItem.leftBarButtonItem = backButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -217,6 +223,29 @@ class DrawingVC: UIViewController {
     func didCreateDrawing() {
         self.hidesBottomBarWhenPushed = false
         done?()
+    }
+    
+    @objc func didPressBack() {
+        guard createProfileDrawing == nil else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        if saveButton.isEnabled {
+            presentIKAlertOnMainThread(title: "Save?", message: "Do you want to save changes to your beautiful drawing 😎 ?", positiveButtonTitle: "Yes", positiveButtonAction: { [weak self] in
+                
+                guard let self = self else { return }
+                self.save()
+                
+            }, negativeButtonTitle: "No") {
+                
+                self.didCreateDrawing()
+            }
+            
+            return
+        }
+        
+        self.didCreateDrawing()
     }
     
     required init?(coder: NSCoder) {

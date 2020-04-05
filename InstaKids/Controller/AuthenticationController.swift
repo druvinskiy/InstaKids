@@ -31,24 +31,46 @@ class AuthenticationController: UIViewController {
     let directionsLabel: IKTitleLabel = {
         let label = IKTitleLabel(textAlignment: .center, fontSize: 24, textColor: .white)
         label.numberOfLines = 0
-        label.text = "Please enter your parent's password to access this screen."
+        label.text = "Please ask your parent to enter their password to access this screen."
         return label
+    }()
+    
+    let goBackButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go back", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.backgroundColor = .systemGreen
+        button.setTitleColor(.white, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        button.layer.cornerRadius = 22
+        button.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
+        return button
     }()
     
     lazy var verticalStackView: UIStackView = {
         
         let sv2 = UIStackView(arrangedSubviews: [
             passwordTextField,
-            loginButton
+            loginButton,
+            
+        ])
+        
+        let sv3 = UIStackView(arrangedSubviews: [
+            directionsLabel,
+            sv2,
         ])
         
         let sv = UIStackView(arrangedSubviews: [
-            directionsLabel,
-            sv2
+            sv3,
+            goBackButton
         ])
         
         sv.axis = .vertical
-        sv.spacing = 32
+        sv.spacing = 50
+        
+        sv3.axis = .vertical
+        sv3.spacing = 32
         
         sv2.axis = .vertical
         sv2.spacing = 8
@@ -84,15 +106,6 @@ class AuthenticationController: UIViewController {
         }
     }
     
-    fileprivate let backToRegisterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Go back", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
-        return button
-    }()
-    
     @objc fileprivate func handleBack() {
         self.dismiss(animated: true) {
             self.didFinishAuthenticating?(false)
@@ -115,12 +128,12 @@ class AuthenticationController: UIViewController {
         authenticationViewModel.isFormValid.bind { [unowned self] (isFormValid) in
             guard let isFormValid = isFormValid else { return }
             self.loginButton.isEnabled = isFormValid
-            self.loginButton.backgroundColor = isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .lightGray
+            self.loginButton.backgroundColor = isFormValid ? Theme.mainColor : .lightGray
             self.loginButton.setTitleColor(isFormValid ? .white : .gray, for: .normal)
         }
         authenticationViewModel.isAuthenticating.bind { [unowned self] (isRegistering) in
             if isRegistering == true {
-                self.loginHUD.textLabel.text = "Register"
+                self.loginHUD.textLabel.text = "Loading"
                 self.loginHUD.show(in: self.view)
             } else {
                 self.loginHUD.dismiss()
@@ -136,8 +149,9 @@ class AuthenticationController: UIViewController {
     }
     
     fileprivate func setupGradientLayer() {
-        let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
-        let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
+        let topColor = #colorLiteral(red: 0.1098039216, green: 0.7098039216, blue: 0.8784313725, alpha: 1)
+        let bottomColor = #colorLiteral(red: 0, green: 0.03137254902, blue: 0.3176470588, alpha: 1)
+        
         // make sure to user cgColor
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.locations = [0, 1]
@@ -150,9 +164,6 @@ class AuthenticationController: UIViewController {
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        view.addSubview(backToRegisterButton)
-        backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
 }
